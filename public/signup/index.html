@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BunnyBot — L'assistant qui répond à vos élèves, 24h/24</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="hero">
+      <div>
+        <div class="mascot-row">
+          <img src="assets/bunny-mascot.png" alt="BunnyBot" />
+          <span class="bubble">Je m'occupe de vos visiteurs 24/7.</span>
+        </div>
+        <h1>Vos visiteurs ont des questions.<br><span class="accent">BunnyBot</span> y répond, même à 2h du matin.</h1>
+        <p class="lede">
+          Un chatbot qui connaît votre formation par cœur, s'installe en une ligne de code
+          sur votre site, et rassure vos futurs élèves avant qu'ils n'abandonnent leur panier.
+        </p>
+        <ul class="points">
+          <li>Répond avec le contenu exact de votre offre — pas de réponses inventées</li>
+          <li>Installation en 2 minutes, aucune compétence technique requise</li>
+          <li>14 jours d'essai, sans carte bancaire</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Démarrer l'essai</h2>
+        <p class="price"><strong>39 €</strong> / mois après l'essai — annulable à tout moment</p>
+
+        <form id="signup-form">
+          <label for="businessName">Nom de votre formation ou marque</label>
+          <input id="businessName" type="text" required placeholder="Ex. Académie du Design UX" />
+
+          <label for="email">Votre email</label>
+          <input id="email" type="email" required placeholder="vous@exemple.com" />
+
+          <label for="courseContext">Parlez-nous de votre offre (optionnel, modifiable plus tard)</label>
+          <textarea id="courseContext" placeholder="Prix, programme, politique de remboursement, questions fréquentes…"></textarea>
+
+          <button type="submit" id="submit-btn">Démarrer mon essai de 14 jours</button>
+          <div id="form-error"></div>
+        </form>
+        <p class="fine-print">En continuant, vous acceptez d'être recontacté au sujet de votre essai.</p>
+      </div>
+    </div>
+
+    <div class="trust-strip">
+      <span>Propulsé par l'API Claude</span>
+      <span>Facturation sécurisée par Stripe</span>
+      <span>Résiliable en un clic</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

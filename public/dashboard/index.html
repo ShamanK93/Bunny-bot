@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BunnyBot — Tableau de bord</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="login-screen">
+    <div id="login-box">
+      <div class="brand"><img src="../signup/assets/bunny-mascot.png" alt="BunnyBot" /> BunnyBot</div>
+      <p class="hint">Tableau de bord administrateur. Entre ton token d'accès pour continuer.</p>
+      <input id="token-input" type="password" placeholder="Token admin" autofocus />
+      <div id="login-error">Token invalide.</div>
+      <button id="login-btn">Entrer</button>
+    </div>
+  </div>
+
+  <div id="app">
+    <header class="topbar">
+      <div class="brand"><img src="../signup/assets/bunny-mascot.png" alt="BunnyBot" /> BunnyBot</div>
+      <div class="meta">Tableau de bord</div>
+    </header>
+
+    <main>
+      <div class="summary-row">
+        <div class="summary-item">
+          <div class="num" id="stat-clients">–</div>
+          <div class="label">Clients</div>
+        </div>
+        <div class="summary-item">
+          <div class="num" id="stat-active">–</div>
+          <div class="label">Abonnements actifs</div>
+        </div>
+        <div class="summary-item">
+          <div class="num" id="stat-messages">–</div>
+          <div class="label">Messages échangés</div>
+        </div>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Client</th>
+            <th>Statut</th>
+            <th>Conversations</th>
+            <th>Clé API</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="clients-tbody"></tbody>
+      </table>
+
+      <div id="empty-state" style="display:none;">
+        <div class="big">Aucun client pour l'instant</div>
+        <div>Les inscriptions via la page /signup/ apparaîtront ici.</div>
+      </div>
+    </main>
+  </div>
+
+  <div id="overlay"></div>
+  <div id="drawer">
+    <div class="drawer-header">
+      <div>
+        <h2 id="drawer-title">Client</h2>
+        <p id="drawer-subtitle"></p>
+      </div>
+      <button id="drawer-close" aria-label="Fermer">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <label>Extrait de code à intégrer sur le site du client</label>
+      <div class="snippet-box" id="snippet-box"></div>
+      <div class="copy-hint">Colle ce script juste avant &lt;/body&gt; sur le site du client.</div>
+
+      <label>Contexte de la formation (utilisé par le chatbot pour répondre)</label>
+      <textarea id="course-context" placeholder="Décris l'offre, le prix, le programme, la politique de remboursement, les questions fréquentes…"></textarea>
+
+      <label>Message d'accueil du widget</label>
+      <input type="text" id="welcome-message" />
+
+      <div class="row2">
+        <div>
+          <label>Nom du bot</label>
+          <input type="text" id="bot-name" />
+        </div>
+        <div>
+          <label>Couleur d'accent</label>
+          <input type="color" id="accent-color" />
+        </div>
+      </div>
+    </div>
+    <div class="drawer-footer">
+      <button id="revoke-btn">Révoquer l'accès</button>
+      <button id="save-btn">Enregistrer</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
