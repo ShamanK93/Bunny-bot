@@ -25,9 +25,10 @@
     '#bunnybot-root{position:fixed;bottom:20px;right:20px;z-index:2147483000;',
     'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;}',
 
-    '#bunnybot-bubble{width:60px;height:60px;border-radius:50%;border:none;cursor:pointer;',
-    'box-shadow:0 6px 20px rgba(20,35,28,0.35);display:flex;align-items:center;justify-content:center;',
-    'font-size:28px;transition:transform .15s ease;background:var(--bb-accent);}',
+    '#bunnybot-bubble{width:60px;height:60px;border-radius:16px;border:none;cursor:pointer;',
+    'box-shadow:0 6px 20px rgba(16,21,31,0.28);display:flex;align-items:center;justify-content:center;',
+    'padding:6px;background:#FFFFFF;transition:transform .15s ease;overflow:hidden;}',
+    '#bunnybot-bubble img{width:100%;height:100%;object-fit:contain;display:block;}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
     '#bunnybot-panel{position:absolute;bottom:76px;right:0;width:340px;max-width:88vw;height:460px;',
@@ -83,7 +84,7 @@
     '    <button id="bunnybot-send" type="submit">Envoyer</button>' +
     '  </form>' +
     '</div>' +
-    '<button id="bunnybot-bubble" aria-label="Ouvrir le chat">🐰</button>';
+    '<button id="bunnybot-bubble" aria-label="Ouvrir le chat"><img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" /></button>';
   document.body.appendChild(root);
 
   var panel = root.querySelector('#bunnybot-panel');
