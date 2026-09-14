@@ -35,7 +35,7 @@ body {
 .navbar-inner {
   max-width: 960px;
   margin: 0 auto;
-  padding: 14px 24px;
+  padding: 10px 24px;
   display: flex;
   align-items: center;
   gap: 28px;
@@ -43,14 +43,14 @@ body {
 .navbar-brand {
   display: flex;
   align-items: center;
-  gap: 11px;
+  gap: 13px;
   text-decoration: none;
   color: var(--text);
   font-family: 'Space Grotesk', sans-serif;
   font-weight: 600;
-  font-size: 20px;
+  font-size: 24px;
 }
-.navbar-brand img { width: 38px; height: 38px; object-fit: cover; border-radius: 9px; }
+.navbar-brand img { width: 64px; height: 64px; object-fit: cover; border-radius: 14px; }
 .navbar-links {
   display: flex;
   gap: 22px;
