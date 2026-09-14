@@ -14,7 +14,7 @@
     open: false,
     loading: false,
     history: [], // {role, content}
-    config: { welcomeMessage: 'Bonjour !', accentColor: '#1F6F62', botName: 'BunnyBot' },
+    config: { welcomeMessage: 'Bonjour !', accentColor: '#52525B', botName: 'BunnyBot' },
     isNewConversation: true,
   };
 

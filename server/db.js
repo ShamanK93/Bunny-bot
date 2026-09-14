@@ -9,7 +9,9 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, '..', 'data');
 const dataFile = path.join(dataDir, 'db.json');
 
-// Ensure the data directory exists — sinon lowdb plante s'il est absent
+// Ensure the data directory exists — it's gitignored (only db.json itself
+// is ignored, but if the folder was never committed it won't exist on a
+// fresh clone/deploy), so create it defensively before lowdb touches it.
 mkdirSync(dataDir, { recursive: true });
 
 const defaultData = { clients: [] };
@@ -42,7 +44,7 @@ export async function createClient({ businessName, email, courseContext }) {
     courseContext: courseContext || '',
     widgetConfig: {
       welcomeMessage: `Bonjour ! Je suis l'assistant de ${businessName}. Comment puis-je vous aider ?`,
-      accentColor: '#1F6F62',
+      accentColor: '#52525B',
       botName: 'BunnyBot',
     },
     subscription: {

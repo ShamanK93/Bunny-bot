@@ -5,8 +5,8 @@
   --paper: #ffffff;
   --panel: #f4f5f7;
   --border: #e3e5ea;
-  --accent: #1f6f62;
-  --accent-dark: #17564c;
+  --accent: #52525b;
+  --accent-dark: #3f3f46;
   --text: #10151f;
   --muted: #5b6472;
   --radius: 10px;
@@ -14,9 +14,15 @@
 * { box-sizing: border-box; }
 body {
   margin: 0;
-  background: var(--paper);
   color: var(--text);
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #e5e7eb;
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 50% 20%, rgba(255, 255, 255, 0.7) 0%, rgba(229, 231, 235, 0) 65%),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(0, 0, 0, 0.04) 100%);
+  background-size: 22px 22px, auto, auto;
+  background-attachment: fixed;
 }
 .wrap {
   max-width: 960px;
@@ -25,12 +31,39 @@ body {
 }
 .hero {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
-  gap: 48px;
+  grid-template-columns: 1.05fr 0.6fr 0.95fr;
+  gap: 24px;
   align-items: center;
   margin-bottom: 56px;
 }
-@media (max-width: 760px) { .hero { grid-template-columns: 1fr; } }
+@media (max-width: 900px) { .hero { grid-template-columns: 1fr; } }
+
+.hero-mascot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 100%;
+  min-height: 320px;
+}
+.hero-mascot img {
+  width: 100%;
+  max-width: 220px;
+  object-fit: contain;
+  filter: drop-shadow(0 18px 24px rgba(16,21,31,0.14));
+}
+.hero-mascot .bubble-deco {
+  position: absolute;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(16,21,31,0.06);
+}
+.hero-mascot .bubble-deco.b1 { width: 54px; height: 30px; top: 8%; left: -6px; }
+.hero-mascot .bubble-deco.b2 { width: 38px; height: 22px; top: 26%; left: -22px; }
+.hero-mascot .bubble-deco.b3 { width: 60px; height: 34px; top: 4%; right: -18px; display: flex; align-items: center; justify-content: center; gap: 4px; }
+.hero-mascot .bubble-deco.b3 span { width: 5px; height: 5px; border-radius: 50%; background: var(--border); }
+@media (max-width: 900px) { .hero-mascot { min-height: 220px; } .hero-mascot img { max-width: 170px; } }
 
 .mascot-row {
   display: flex;
