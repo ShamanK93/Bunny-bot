@@ -3,9 +3,14 @@ import { JSONFile } from 'lowdb/node';
 import { randomBytes } from 'crypto';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { mkdirSync } from 'fs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const dataFile = path.join(__dirname, '..', 'data', 'db.json');
+const dataDir = path.join(__dirname, '..', 'data');
+const dataFile = path.join(dataDir, 'db.json');
+
+// Ensure the data directory exists — sinon lowdb plante s'il est absent
+mkdirSync(dataDir, { recursive: true });
 
 const defaultData = { clients: [] };
 const adapter = new JSONFile(dataFile);
