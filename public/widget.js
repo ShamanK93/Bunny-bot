@@ -14,7 +14,13 @@
     open: false,
     loading: false,
     history: [], // {role, content}
-    config: { welcomeMessage: 'Bonjour !', accentColor: '#52525B', botName: 'BunnyBot', iconStyle: 'bunny' },
+    config: {
+      welcomeMessage: 'Bonjour !',
+      accentColor: '#52525B',
+      botName: 'BunnyBot',
+      iconStyle: 'bunny',
+      quickReplies: [],
+    },
     isNewConversation: true,
   };
 
@@ -32,7 +38,7 @@
     'z-index:2147483000!important;',
     'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;}',
 
-    '#bunnybot-bubble{width:76px!important;height:76px!important;border-radius:50%!important;',
+    '#bunnybot-bubble{width:64px!important;height:64px!important;border-radius:50%!important;',
     'border:none!important;cursor:pointer!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;',
     'display:flex!important;align-items:center!important;justify-content:center!important;',
     'padding:0!important;background:#FFFFFF!important;transition:transform .15s ease!important;',
@@ -41,11 +47,11 @@
     '#bunnybot-bubble:focus{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
     '#bunnybot-bubble:active{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
     '#bunnybot-bubble img{width:100%!important;height:100%!important;object-fit:cover!important;',
-    'border-radius:50%!important;display:block!important;}',
+    'transform:scale(1.55)!important;border-radius:50%!important;display:block!important;}',
     '#bunnybot-bubble svg{width:52%!important;height:52%!important;fill:var(--bb-accent)!important;}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
-    '#bunnybot-panel{position:absolute!important;bottom:92px!important;right:0!important;',
+    '#bunnybot-panel{position:absolute!important;bottom:78px!important;right:0!important;',
     'width:360px!important;max-width:90vw!important;height:480px!important;max-height:72vh!important;',
     'background:#FFFFFF!important;border-radius:18px!important;box-shadow:0 16px 48px rgba(16,21,31,0.22)!important;',
     'display:none;flex-direction:column!important;overflow:hidden!important;border:1px solid #E3E5EA!important;}',
@@ -53,8 +59,12 @@
 
     '#bunnybot-header{background:#10151F!important;color:#FFFFFF!important;padding:14px 16px!important;',
     'display:flex!important;align-items:center!important;gap:10px!important;flex-shrink:0!important;}',
-    '#bunnybot-header .bb-dot{width:8px!important;height:8px!important;border-radius:50%!important;',
-    'background:var(--bb-accent)!important;flex-shrink:0!important;}',
+    '#bunnybot-header .bb-avatar{width:28px!important;height:28px!important;border-radius:50%!important;',
+    'overflow:hidden!important;flex-shrink:0!important;background:#FFFFFF!important;}',
+    '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;object-fit:cover!important;',
+    'transform:scale(1.55)!important;display:block!important;}',
+    '#bunnybot-header .bb-avatar svg{width:60%!important;height:60%!important;fill:var(--bb-accent)!important;',
+    'margin:20%!important;}',
     '#bunnybot-header .bb-name{font-weight:600!important;font-size:14.5px!important;color:#FFFFFF!important;}',
     '#bunnybot-close{margin-left:auto!important;background:none!important;border:none!important;',
     'color:#FFFFFF!important;opacity:.7;cursor:pointer!important;font-size:20px!important;',
@@ -73,6 +83,15 @@
     'border-bottom-right-radius:4px!important;}',
     '.bb-msg-typing{align-self:flex-start!important;background:#F4F5F7!important;color:#5B6472!important;',
     'font-style:italic!important;}',
+
+    '#bunnybot-quickreplies{display:flex!important;flex-direction:column!important;',
+    'align-items:flex-end!important;gap:6px!important;padding:0 14px 14px!important;}',
+    '.bb-quickreply{background:#FFFFFF!important;border:1px solid #E3E5EA!important;',
+    'border-radius:999px!important;padding:8px 14px!important;font-size:12.5px!important;',
+    'color:#10151F!important;cursor:pointer!important;text-align:left!important;',
+    'max-width:88%!important;outline:none!important;appearance:none!important;',
+    '-webkit-appearance:none!important;font-family:inherit!important;}',
+    '.bb-quickreply:hover{border-color:var(--bb-accent)!important;}',
 
     '#bunnybot-form{display:flex!important;align-items:center!important;gap:8px!important;',
     'padding:10px!important;border-top:1px solid #E3E5EA!important;background:#FFFFFF!important;',
@@ -103,11 +122,12 @@
   root.innerHTML =
     '<div id="bunnybot-panel">' +
     '  <div id="bunnybot-header">' +
-    '    <span class="bb-dot"></span>' +
+    '    <span class="bb-avatar" id="bunnybot-avatar"></span>' +
     '    <span class="bb-name" id="bunnybot-name">BunnyBot</span>' +
     '    <button id="bunnybot-close" aria-label="Fermer">&times;</button>' +
     '  </div>' +
     '  <div id="bunnybot-messages"></div>' +
+    '  <div id="bunnybot-quickreplies"></div>' +
     '  <form id="bunnybot-form">' +
     '    <input id="bunnybot-input" type="text" placeholder="Écrivez votre question…" autocomplete="off" />' +
     '    <button id="bunnybot-send" type="submit">Envoyer</button>' +
@@ -120,10 +140,12 @@
   var bubble = root.querySelector('#bunnybot-bubble');
   var closeBtn = root.querySelector('#bunnybot-close');
   var messagesEl = root.querySelector('#bunnybot-messages');
+  var quickrepliesEl = root.querySelector('#bunnybot-quickreplies');
   var form = root.querySelector('#bunnybot-form');
   var input = root.querySelector('#bunnybot-input');
   var sendBtn = root.querySelector('#bunnybot-send');
   var nameEl = root.querySelector('#bunnybot-name');
+  var avatarEl = root.querySelector('#bunnybot-avatar');
 
   var BUBBLE_ICON_SVG =
     '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
@@ -133,8 +155,11 @@
   function renderBubbleIcon() {
     if (state.config.iconStyle === 'bubble') {
       bubble.innerHTML = BUBBLE_ICON_SVG;
+      avatarEl.innerHTML = BUBBLE_ICON_SVG;
     } else {
-      bubble.innerHTML = '<img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" />';
+      var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" />';
+      bubble.innerHTML = imgHtml;
+      avatarEl.innerHTML = imgHtml;
     }
   }
   renderBubbleIcon();
@@ -162,11 +187,29 @@
     if (el) el.remove();
   }
 
+  function renderQuickReplies() {
+    quickrepliesEl.innerHTML = '';
+    var replies = state.config.quickReplies;
+    if (!replies || !replies.length) return;
+    replies.forEach(function (q) {
+      var btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'bb-quickreply';
+      btn.textContent = q;
+      btn.addEventListener('click', function () {
+        quickrepliesEl.innerHTML = '';
+        sendMessage(q);
+      });
+      quickrepliesEl.appendChild(btn);
+    });
+  }
+
   function openPanel() {
     state.open = true;
     panel.classList.add('bb-open');
     if (messagesEl.children.length === 0) {
       appendMessage('bot', state.config.welcomeMessage);
+      renderQuickReplies();
     }
     input.focus();
   }
@@ -181,9 +224,7 @@
   });
   closeBtn.addEventListener('click', closePanel);
 
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var message = input.value.trim();
+  function sendMessage(message) {
     if (!message || state.loading) return;
 
     appendMessage('user', message);
@@ -225,6 +266,12 @@
         state.loading = false;
         sendBtn.disabled = false;
       });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    quickrepliesEl.innerHTML = '';
+    sendMessage(input.value.trim());
   });
 
   // ---------------------------------------------------------------------

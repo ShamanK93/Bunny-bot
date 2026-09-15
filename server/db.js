@@ -51,6 +51,7 @@ export async function createClient({ businessName, email, courseContext, passwor
       accentColor: '#52525B',
       botName: 'BunnyBot',
       iconStyle: 'bunny', // 'bunny' | 'bubble'
+      quickReplies: ['Quel est le prix ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {
       status: 'trialing', // trialing | active | past_due | canceled
@@ -148,7 +149,13 @@ export const DEMO_API_KEY = 'bb_demo_bunnybot_showcase_public_key';
 export async function ensureDemoClient() {
   await db.read();
   let demo = db.data.clients.find((c) => c.id === 'demo-bunnybot');
-  if (demo) return demo;
+  if (demo) {
+    if (!demo.widgetConfig.quickReplies) {
+      demo.widgetConfig.quickReplies = ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'];
+      await db.write();
+    }
+    return demo;
+  }
 
   demo = {
     id: 'demo-bunnybot',
@@ -163,6 +170,7 @@ export async function ensureDemoClient() {
       accentColor: '#52525B',
       botName: 'BunnyBot',
       iconStyle: 'bunny',
+      quickReplies: ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {
       status: 'active',

@@ -50,6 +50,7 @@
         var iconStyle = me.widgetConfig.iconStyle || 'bunny';
         document.getElementById('icon-style-bunny').checked = iconStyle === 'bunny';
         document.getElementById('icon-style-bubble').checked = iconStyle === 'bubble';
+        document.getElementById('quick-replies').value = (me.widgetConfig.quickReplies || []).join('\n');
         document.getElementById('snippet-box').textContent =
           '<script src="' + API_BASE + '/widget.js" data-api-key="' + me.apiKey + '"><' + '/script>';
         renderStatus(me);
@@ -67,6 +68,8 @@
         botName: document.getElementById('bot-name').value,
         accentColor: document.getElementById('accent-color').value,
         iconStyle: document.querySelector('input[name="icon-style"]:checked').value,
+        quickReplies: document.getElementById('quick-replies').value
+          .split('\n').map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 4),
       },
     };
     authedFetch('/api/portal/me', { method: 'PATCH', body: JSON.stringify(payload) })

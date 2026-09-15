@@ -124,6 +124,7 @@
         var iconStyle = client.widgetConfig.iconStyle || 'bunny';
         document.getElementById('icon-style-bunny').checked = iconStyle === 'bunny';
         document.getElementById('icon-style-bubble').checked = iconStyle === 'bubble';
+        document.getElementById('quick-replies').value = (client.widgetConfig.quickReplies || []).join('\n');
         document.getElementById('snippet-box').textContent =
           '<script src="' + API_BASE + '/widget.js" data-api-key="' + client.apiKey + '"><' + '/script>';
 
@@ -150,6 +151,8 @@
         botName: document.getElementById('bot-name').value,
         accentColor: document.getElementById('accent-color').value,
         iconStyle: document.querySelector('input[name="icon-style"]:checked').value,
+        quickReplies: document.getElementById('quick-replies').value
+          .split('\n').map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 4),
       },
     };
     fetch(API_BASE + '/api/admin/clients/' + activeClientId, {

@@ -23,6 +23,10 @@ app.use('/api/stripe', stripeRoutes);
 
 app.use(express.json());
 app.use(cookieParser());
+app.get('/widget.js', (req, res, next) => {
+  res.setHeader('Cache-Control', 'no-cache, no-store, must-revalidate');
+  next();
+});
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
 app.use('/api/chat', chatRoutes);
