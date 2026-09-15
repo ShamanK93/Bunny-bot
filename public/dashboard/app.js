@@ -121,6 +121,9 @@
         document.getElementById('welcome-message').value = client.widgetConfig.welcomeMessage;
         document.getElementById('bot-name').value = client.widgetConfig.botName;
         document.getElementById('accent-color').value = client.widgetConfig.accentColor;
+        var iconStyle = client.widgetConfig.iconStyle || 'bunny';
+        document.getElementById('icon-style-bunny').checked = iconStyle === 'bunny';
+        document.getElementById('icon-style-bubble').checked = iconStyle === 'bubble';
         document.getElementById('snippet-box').textContent =
           '<script src="' + API_BASE + '/widget.js" data-api-key="' + client.apiKey + '"><' + '/script>';
 
@@ -146,6 +149,7 @@
         welcomeMessage: document.getElementById('welcome-message').value,
         botName: document.getElementById('bot-name').value,
         accentColor: document.getElementById('accent-color').value,
+        iconStyle: document.querySelector('input[name="icon-style"]:checked').value,
       },
     };
     fetch(API_BASE + '/api/admin/clients/' + activeClientId, {

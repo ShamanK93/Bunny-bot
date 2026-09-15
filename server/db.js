@@ -46,6 +46,7 @@ export async function createClient({ businessName, email, courseContext }) {
       welcomeMessage: `Bonjour ! Je suis l'assistant de ${businessName}. Comment puis-je vous aider ?`,
       accentColor: '#52525B',
       botName: 'BunnyBot',
+      iconStyle: 'bunny', // 'bunny' | 'bubble'
     },
     subscription: {
       status: 'trialing', // trialing | active | past_due | canceled

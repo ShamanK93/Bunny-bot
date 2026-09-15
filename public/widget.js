@@ -14,7 +14,7 @@
     open: false,
     loading: false,
     history: [], // {role, content}
-    config: { welcomeMessage: 'Bonjour !', accentColor: '#52525B', botName: 'BunnyBot' },
+    config: { welcomeMessage: 'Bonjour !', accentColor: '#52525B', botName: 'BunnyBot', iconStyle: 'bunny' },
     isNewConversation: true,
   };
 
@@ -29,6 +29,7 @@
     'box-shadow:0 6px 20px rgba(16,21,31,0.28);display:flex;align-items:center;justify-content:center;',
     'padding:6px;background:#FFFFFF;transition:transform .15s ease;overflow:hidden;}',
     '#bunnybot-bubble img{width:100%;height:100%;object-fit:contain;display:block;}',
+    '#bunnybot-bubble svg{width:60%;height:60%;fill:var(--bb-accent);}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
     '#bunnybot-panel{position:absolute;bottom:76px;right:0;width:340px;max-width:88vw;height:460px;',
@@ -84,7 +85,7 @@
     '    <button id="bunnybot-send" type="submit">Envoyer</button>' +
     '  </form>' +
     '</div>' +
-    '<button id="bunnybot-bubble" aria-label="Ouvrir le chat"><img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" /></button>';
+    '<button id="bunnybot-bubble" aria-label="Ouvrir le chat"></button>';
   document.body.appendChild(root);
 
   var panel = root.querySelector('#bunnybot-panel');
@@ -95,6 +96,20 @@
   var input = root.querySelector('#bunnybot-input');
   var sendBtn = root.querySelector('#bunnybot-send');
   var nameEl = root.querySelector('#bunnybot-name');
+
+  var BUBBLE_ICON_SVG =
+    '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M12 3C7.03 3 3 6.58 3 11c0 2.39 1.19 4.53 3.08 6.02-.1.98-.5 2.24-1.45 3.48a.5.5 0 0 0 .5.79c2.03-.5 3.6-1.4 4.6-2.13.72.15 1.47.24 2.27.24 4.97 0 9-3.58 9-8s-4.03-8-9-8z"/>' +
+    '</svg>';
+
+  function renderBubbleIcon() {
+    if (state.config.iconStyle === 'bubble') {
+      bubble.innerHTML = BUBBLE_ICON_SVG;
+    } else {
+      bubble.innerHTML = '<img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" />';
+    }
+  }
+  renderBubbleIcon();
 
   function appendMessage(role, text) {
     var el = document.createElement('div');
@@ -196,6 +211,7 @@
         state.config = data.widgetConfig;
         root.style.setProperty('--bb-accent', state.config.accentColor);
         nameEl.textContent = state.config.botName;
+        renderBubbleIcon();
       }
     })
     .catch(function () {
