@@ -27,22 +27,49 @@ body {
 /* --- Login screen ------------------------------------------------- */
 #login-screen {
   min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media (max-width: 860px) { #login-screen { grid-template-columns: 1fr; } }
+
+.login-form-panel {
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 24px;
 }
+.login-visual-panel {
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48px;
+  color: #fff;
+  text-align: center;
+}
+.login-visual-panel img { width: 200px; margin-bottom: 28px; }
+.login-visual-panel h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  max-width: 20ch;
+}
+.login-visual-panel p { color: #b6bac2; font-size: 14px; max-width: 32ch; line-height: 1.6; margin: 0; }
+@media (max-width: 860px) { .login-visual-panel { display: none; } }
+
 #login-box { width: 100%; max-width: 360px; text-align: left; }
 #login-box .brand {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 13px;
 }
-#login-box .brand img { width: 34px; height: 34px; border-radius: 8px; }
+#login-box .brand img { width: 64px; height: 64px; border-radius: 8px; }
 #login-box p.hint { color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
 #login-box label { display: block; font-size: 12.5px; font-weight: 600; margin: 14px 0 6px; }
 #login-box label:first-of-type { margin-top: 0; }
@@ -85,32 +112,33 @@ body {
 #app { display: none; min-height: 100vh; flex-direction: column; }
 
 header.topbar {
-  background: var(--ink);
-  color: #fff;
-  padding: 16px 28px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 12px 28px;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 header.topbar .brand {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 16.5px;
+  font-size: 24px;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 13px;
 }
-header.topbar .brand img { width: 26px; height: 26px; border-radius: 6px; }
+header.topbar .brand img { width: 64px; height: 64px; border-radius: 8px; }
 header.topbar button.logout {
   background: none;
-  border: 1px solid rgba(255,255,255,0.25);
-  color: #fff;
+  border: 1px solid var(--border);
+  color: var(--text);
   border-radius: var(--radius);
-  padding: 7px 13px;
+  padding: 8px 14px;
   font-size: 12.5px;
   cursor: pointer;
 }
-header.topbar button.logout:hover { background: rgba(255,255,255,0.08); }
+header.topbar button.logout:hover { background: var(--panel); }
 
 main {
   flex: 1;

@@ -39,14 +39,14 @@ body {
 }
 #login-box .brand {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 26px;
+  font-size: 24px;
   font-weight: 600;
   margin-bottom: 4px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 13px;
 }
-#login-box .brand img { width: 30px; height: 30px; object-fit: contain; }
+#login-box .brand img { width: 64px; height: 64px; object-fit: contain; }
 #login-box p.hint {
   color: var(--muted);
   margin-bottom: 24px;
@@ -87,23 +87,24 @@ body {
 #app { display: none; min-height: 100vh; flex-direction: column; }
 
 header.topbar {
-  background: var(--ink);
-  color: #fff;
-  padding: 18px 28px;
+  background: #ffffff;
+  color: var(--text);
+  padding: 12px 28px;
+  border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 header.topbar .brand {
   font-family: 'Space Grotesk', sans-serif;
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   display: flex;
   align-items: center;
-  gap: 9px;
+  gap: 13px;
 }
-header.topbar .brand img { width: 22px; height: 22px; object-fit: contain; }
-header.topbar .meta { color: #98a2b3; font-size: 12.5px; }
+header.topbar .brand img { width: 64px; height: 64px; object-fit: contain; }
+header.topbar .meta { color: var(--muted); font-size: 12.5px; }
 
 main {
   flex: 1;

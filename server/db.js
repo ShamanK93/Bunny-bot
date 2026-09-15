@@ -141,6 +141,44 @@ export function isSubscriptionActive(client) {
   return false;
 }
 
+// --- Public demo client (showcases BunnyBot on its own landing page) --
+
+export const DEMO_API_KEY = 'bb_demo_bunnybot_showcase_public_key';
+
+export async function ensureDemoClient() {
+  await db.read();
+  let demo = db.data.clients.find((c) => c.id === 'demo-bunnybot');
+  if (demo) return demo;
+
+  demo = {
+    id: 'demo-bunnybot',
+    businessName: 'BunnyBot',
+    email: 'demo@bunnybot.internal',
+    passwordHash: null,
+    apiKey: DEMO_API_KEY,
+    courseContext:
+      "BunnyBot est un chatbot pour créateurs de formations en ligne. Il s'installe en une ligne de code sur un site, répond aux questions des visiteurs uniquement à partir du contenu fourni par le créateur (jamais d'invention), 24h/24. Tarif : 39€/mois après un essai gratuit de 14 jours sans carte bancaire. Résiliable à tout moment. Propulsé par l'API Claude, facturation par Stripe.",
+    widgetConfig: {
+      welcomeMessage: "Bonjour ! Posez-moi une question sur BunnyBot, comme le feraient vos futurs visiteurs.",
+      accentColor: '#52525B',
+      botName: 'BunnyBot',
+      iconStyle: 'bunny',
+    },
+    subscription: {
+      status: 'active',
+      stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      planId: null,
+      trialEndsAt: Date.now() + 100 * 365 * 24 * 60 * 60 * 1000,
+    },
+    stats: { messagesTotal: 0, conversationsTotal: 0 },
+    createdAt: Date.now(),
+  };
+  db.data.clients.push(demo);
+  await db.write();
+  return demo;
+}
+
 // --- Client portal auth (separate from the public widget apiKey) -----
 
 export async function verifyClientPassword(client, password) {

@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
-import { initDb } from './db.js';
+import { initDb, ensureDemoClient } from './db.js';
 import chatRoutes from './routes/chat.js';
 import signupRoutes from './routes/signup.js';
 import adminRoutes from './routes/admin.js';
@@ -34,11 +34,13 @@ app.get('/api/health', (req, res) => res.json({ ok: true }));
 
 const PORT = process.env.PORT || 3000;
 
-initDb().then(() => {
-  app.listen(PORT, () => {
-    console.log(`🐰 BunnyBot server running on http://localhost:${PORT}`);
-    console.log(`   Dashboard: http://localhost:${PORT}/dashboard/`);
-    console.log(`   Signup:    http://localhost:${PORT}/signup/`);
-    console.log(`   Portal:    http://localhost:${PORT}/portal/`);
+initDb()
+  .then(() => ensureDemoClient())
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`🐰 BunnyBot server running on http://localhost:${PORT}`);
+      console.log(`   Dashboard: http://localhost:${PORT}/dashboard/`);
+      console.log(`   Signup:    http://localhost:${PORT}/signup/`);
+      console.log(`   Portal:    http://localhost:${PORT}/portal/`);
+    });
   });
-});
