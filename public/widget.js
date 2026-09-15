@@ -41,13 +41,14 @@
     '#bunnybot-bubble{width:64px!important;height:64px!important;border-radius:50%!important;',
     'border:none!important;cursor:pointer!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;',
     'display:flex!important;align-items:center!important;justify-content:center!important;',
-    'padding:0!important;background:#FFFFFF!important;transition:transform .15s ease!important;',
+    'padding:0!important;background:#10151F!important;transition:transform .15s ease!important;',
     'overflow:hidden!important;flex-shrink:0!important;outline:none!important;',
     'appearance:none!important;-webkit-appearance:none!important;-webkit-tap-highlight-color:transparent!important;}',
-    '#bunnybot-bubble:focus{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
+    '#bunnybot-bubble:focus,#bunnybot-bubble:focus-visible{outline:none!important;',
+    'box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
     '#bunnybot-bubble:active{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
-    '#bunnybot-bubble img{width:100%!important;height:100%!important;object-fit:cover!important;',
-    'transform:scale(1.55)!important;border-radius:50%!important;display:block!important;}',
+    '#bunnybot-bubble img{width:62%!important;height:62%!important;object-fit:contain!important;',
+    'transform:none!important;border-radius:0!important;display:block!important;}',
     '#bunnybot-bubble svg{width:52%!important;height:52%!important;fill:var(--bb-accent)!important;}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
@@ -60,9 +61,11 @@
     '#bunnybot-header{background:#10151F!important;color:#FFFFFF!important;padding:14px 16px!important;',
     'display:flex!important;align-items:center!important;gap:10px!important;flex-shrink:0!important;}',
     '#bunnybot-header .bb-avatar{width:28px!important;height:28px!important;border-radius:50%!important;',
-    'overflow:hidden!important;flex-shrink:0!important;background:#FFFFFF!important;}',
-    '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;object-fit:cover!important;',
-    'transform:scale(1.55)!important;display:block!important;}',
+    'overflow:hidden!important;flex-shrink:0!important;background:#10151F!important;',
+    'display:flex!important;align-items:center!important;justify-content:center!important;',
+    'border:1px solid rgba(255,255,255,0.14)!important;}',
+    '#bunnybot-header .bb-avatar img{width:66%!important;height:66%!important;object-fit:contain!important;',
+    'transform:none!important;display:block!important;}',
     '#bunnybot-header .bb-avatar svg{width:60%!important;height:60%!important;fill:var(--bb-accent)!important;',
     'margin:20%!important;}',
     '#bunnybot-header .bb-name{font-weight:600!important;font-size:14.5px!important;color:#FFFFFF!important;}',
@@ -124,7 +127,7 @@
     '  <div id="bunnybot-header">' +
     '    <span class="bb-avatar" id="bunnybot-avatar"></span>' +
     '    <span class="bb-name" id="bunnybot-name">BunnyBot</span>' +
-    '    <button id="bunnybot-close" aria-label="Fermer">&times;</button>' +
+    '    <button id="bunnybot-close" type="button" aria-label="Fermer">&times;</button>' +
     '  </div>' +
     '  <div id="bunnybot-messages"></div>' +
     '  <div id="bunnybot-quickreplies"></div>' +
@@ -133,7 +136,7 @@
     '    <button id="bunnybot-send" type="submit">Envoyer</button>' +
     '  </form>' +
     '</div>' +
-    '<button id="bunnybot-bubble" aria-label="Ouvrir le chat"></button>';
+    '<button id="bunnybot-bubble" type="button" aria-label="Ouvrir le chat"></button>';
   document.body.appendChild(root);
 
   var panel = root.querySelector('#bunnybot-panel');
@@ -157,7 +160,7 @@
       bubble.innerHTML = BUBBLE_ICON_SVG;
       avatarEl.innerHTML = BUBBLE_ICON_SVG;
     } else {
-      var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" />';
+      var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-icon-minimal.png" alt="" />';
       bubble.innerHTML = imgHtml;
       avatarEl.innerHTML = imgHtml;
     }
