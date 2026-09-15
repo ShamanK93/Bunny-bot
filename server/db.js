@@ -4,6 +4,7 @@ import { randomBytes } from 'crypto';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { mkdirSync } from 'fs';
+import bcrypt from 'bcryptjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const dataDir = path.join(__dirname, '..', 'data');
@@ -14,13 +15,14 @@ const dataFile = path.join(dataDir, 'db.json');
 // fresh clone/deploy), so create it defensively before lowdb touches it.
 mkdirSync(dataDir, { recursive: true });
 
-const defaultData = { clients: [] };
+const defaultData = { clients: [], sessions: [] };
 const adapter = new JSONFile(dataFile);
 const db = new Low(adapter, defaultData);
 
 export async function initDb() {
   await db.read();
   db.data ||= defaultData;
+  db.data.sessions ||= [];
   await db.write();
 }
 
@@ -34,12 +36,14 @@ export function generateId() {
 
 // --- Client CRUD -----------------------------------------------------
 
-export async function createClient({ businessName, email, courseContext }) {
+export async function createClient({ businessName, email, courseContext, password }) {
   await db.read();
+  const passwordHash = await bcrypt.hash(password, 10);
   const client = {
     id: generateId(),
     businessName,
     email,
+    passwordHash,
     apiKey: generateApiKey(),
     courseContext: courseContext || '',
     widgetConfig: {
@@ -71,6 +75,15 @@ export async function getAllClients() {
 export async function getClientById(id) {
   await db.read();
   return db.data.clients.find((c) => c.id === id) || null;
+}
+
+export async function getClientByEmail(email) {
+  await db.read();
+  return (
+    db.data.clients.find(
+      (c) => c.email.toLowerCase() === String(email).toLowerCase()
+    ) || null
+  );
 }
 
 export async function getClientByApiKey(apiKey) {
@@ -126,4 +139,39 @@ export function isSubscriptionActive(client) {
   if (status === 'active') return true;
   if (status === 'trialing') return Date.now() < trialEndsAt;
   return false;
+}
+
+// --- Client portal auth (separate from the public widget apiKey) -----
+
+export async function verifyClientPassword(client, password) {
+  if (!client?.passwordHash) return false;
+  return bcrypt.compare(password, client.passwordHash);
+}
+
+const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+
+export async function createSession(clientId) {
+  await db.read();
+  const token = randomBytes(32).toString('hex');
+  db.data.sessions.push({
+    token,
+    clientId,
+    expiresAt: Date.now() + SESSION_TTL_MS,
+  });
+  await db.write();
+  return token;
+}
+
+export async function getClientBySessionToken(token) {
+  await db.read();
+  const session = db.data.sessions.find((s) => s.token === token);
+  if (!session) return null;
+  if (session.expiresAt < Date.now()) return null;
+  return db.data.clients.find((c) => c.id === session.clientId) || null;
+}
+
+export async function deleteSession(token) {
+  await db.read();
+  db.data.sessions = db.data.sessions.filter((s) => s.token !== token);
+  await db.write();
 }

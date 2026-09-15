@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mon espace — BunnyBot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div id="app">
+    <header class="topbar">
+      <div class="brand"><img src="../signup/assets/bunny-mascot.png" alt="BunnyBot" /> <span id="business-name-header">BunnyBot</span></div>
+      <button class="logout" id="logout-btn">Se déconnecter</button>
+    </header>
+
+    <main>
+      <div class="status-banner" id="status-banner">
+        <span id="status-text">Chargement…</span>
+        <button id="billing-btn" style="display:none;">Gérer mon abonnement</button>
+      </div>
+
+      <section class="card">
+        <h2>Code à intégrer sur votre site</h2>
+        <p class="sub">Collez cet extrait juste avant &lt;/body&gt; sur votre site.</p>
+        <div class="snippet-box" id="snippet-box"></div>
+        <p class="copy-hint">Un changement d'apparence ci-dessous s'applique automatiquement, sans repasser cet extrait.</p>
+      </section>
+
+      <section class="card">
+        <h2>Contenu de votre offre</h2>
+        <p class="sub">C'est ce que le bot utilise pour répondre à vos visiteurs — plus c'est complet, plus les réponses seront précises.</p>
+        <label for="course-context">Description, prix, programme, politique de remboursement, FAQ…</label>
+        <textarea id="course-context"></textarea>
+      </section>
+
+      <section class="card">
+        <h2>Apparence du widget</h2>
+        <label for="welcome-message">Message d'accueil</label>
+        <input type="text" id="welcome-message" />
+
+        <div class="row2">
+          <div>
+            <label for="bot-name">Nom du bot</label>
+            <input type="text" id="bot-name" />
+          </div>
+          <div>
+            <label for="accent-color">Couleur d'accent</label>
+            <input type="color" id="accent-color" />
+          </div>
+        </div>
+
+        <label>Icône du widget</label>
+        <div class="icon-choice">
+          <label class="icon-choice-option">
+            <input type="radio" name="icon-style" value="bunny" id="icon-style-bunny" />
+            <span>🐰 Lapin BunnyBot</span>
+          </label>
+          <label class="icon-choice-option">
+            <input type="radio" name="icon-style" value="bubble" id="icon-style-bubble" />
+            <span>💬 Bulle de chat classique</span>
+          </label>
+        </div>
+      </section>
+
+      <button class="save-btn" id="save-btn">Enregistrer les modifications</button>
+      <span class="save-confirm" id="save-confirm">Enregistré ✓</span>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

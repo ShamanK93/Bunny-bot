@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #10151f;
+  --paper: #ffffff;
+  --panel: #f4f5f7;
+  --border: #e3e5ea;
+  --accent: #52525b;
+  --accent-dark: #3f3f46;
+  --muted: #5b6472;
+  --success: #1f7a4d;
+  --danger: #b3261e;
+  --text: #10151f;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+/* --- Login screen ------------------------------------------------- */
+#login-screen {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+#login-box { width: 100%; max-width: 360px; text-align: left; }
+#login-box .brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+#login-box .brand img { width: 34px; height: 34px; border-radius: 8px; }
+#login-box p.hint { color: var(--muted); margin-bottom: 24px; line-height: 1.5; }
+#login-box label { display: block; font-size: 12.5px; font-weight: 600; margin: 14px 0 6px; }
+#login-box label:first-of-type { margin-top: 0; }
+#login-box input {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-family: inherit;
+  background: #fff;
+}
+#login-box input:focus { outline: none; border-color: var(--accent); }
+#login-box button {
+  width: 100%;
+  margin-top: 18px;
+  padding: 11px 13px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+}
+#login-box button:hover { background: #050810; }
+#login-error {
+  color: var(--danger);
+  background: #fbeceb;
+  padding: 9px 12px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  margin-top: 14px;
+  display: none;
+}
+#login-box .signup-hint { margin-top: 18px; font-size: 12.5px; color: var(--muted); text-align: center; }
+#login-box .signup-hint a { color: var(--accent); font-weight: 600; text-decoration: none; }
+
+/* --- App shell ------------------------------------------------------ */
+#app { display: none; min-height: 100vh; flex-direction: column; }
+
+header.topbar {
+  background: var(--ink);
+  color: #fff;
+  padding: 16px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header.topbar .brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+header.topbar .brand img { width: 26px; height: 26px; border-radius: 6px; }
+header.topbar button.logout {
+  background: none;
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: 7px 13px;
+  font-size: 12.5px;
+  cursor: pointer;
+}
+header.topbar button.logout:hover { background: rgba(255,255,255,0.08); }
+
+main {
+  flex: 1;
+  padding: 32px 28px 60px;
+  max-width: 760px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.status-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  margin-bottom: 28px;
+  font-size: 13.5px;
+  border: 1px solid var(--border);
+  background: var(--panel);
+}
+.status-banner.active { background: #e3f1e8; border-color: #cfe8d8; color: var(--success); }
+.status-banner.trialing { background: #eef1fb; border-color: #dce1f7; color: #3949a3; }
+.status-banner.past_due, .status-banner.canceled { background: #fbeceb; border-color: #f3d9d7; color: var(--danger); }
+.status-banner button {
+  background: #fff;
+  border: 1px solid currentColor;
+  color: inherit;
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+section.card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 20px;
+}
+section.card h2 {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 16.5px;
+  margin: 0 0 4px;
+  font-weight: 600;
+}
+section.card p.sub { color: var(--muted); font-size: 12.5px; margin: 0 0 16px; }
+
+label { display: block; font-size: 12.5px; font-weight: 600; margin: 14px 0 6px; }
+label:first-of-type { margin-top: 0; }
+input[type=text], textarea {
+  width: 100%;
+  padding: 9px 11px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-family: inherit;
+  font-size: 13.5px;
+  background: #fff;
+  color: var(--text);
+}
+textarea { min-height: 110px; resize: vertical; }
+input[type=color] { width: 100%; height: 38px; padding: 3px; border: 1px solid var(--border); border-radius: var(--radius); }
+.row2 { display: flex; gap: 10px; }
+.row2 > div { flex: 1; }
+
+.icon-choice { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
+.icon-choice-option {
+  display: flex; align-items: center; gap: 8px;
+  border: 1px solid var(--border); border-radius: var(--radius);
+  padding: 9px 11px; cursor: pointer; font-size: 13.5px;
+}
+.icon-choice-option:has(input:checked) { border-color: var(--accent); background: var(--panel); }
+.icon-choice-option input { margin: 0; }
+
+.snippet-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  white-space: pre-wrap;
+  word-break: break-all;
+  color: var(--text);
+}
+.copy-hint { color: var(--muted); font-size: 12px; margin-top: 6px; }
+
+button.save-btn {
+  margin-top: 18px;
+  padding: 11px 18px;
+  border: none;
+  border-radius: var(--radius);
+  background: var(--ink);
+  color: #fff;
+  font-weight: 600;
+  font-size: 13.5px;
+  cursor: pointer;
+}
+button.save-btn:hover { background: #050810; }
+.save-confirm { color: var(--success); font-size: 12.5px; margin-left: 10px; display: none; }

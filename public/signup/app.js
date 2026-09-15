@@ -14,12 +14,14 @@
     var payload = {
       businessName: document.getElementById('businessName').value.trim(),
       email: document.getElementById('email').value.trim(),
+      password: document.getElementById('password').value,
       courseContext: document.getElementById('courseContext').value.trim(),
     };
 
     fetch(window.location.origin + '/api/signup', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
       body: JSON.stringify(payload),
     })
       .then(function (res) {
@@ -33,8 +35,8 @@
         if (result.data.checkoutUrl) {
           window.location.href = result.data.checkoutUrl;
         } else {
-          // Stripe not configured (local/dev) — go straight to a success page
-          window.location.href = 'success.html?client=' + result.data.client.id;
+          // Already logged in via session cookie — go straight to the portal
+          window.location.href = '../portal/';
         }
       })
       .catch(function (err) {
