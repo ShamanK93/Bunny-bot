@@ -47,10 +47,10 @@
     '#bunnybot-bubble:focus,#bunnybot-bubble:focus-visible{outline:none!important;',
     'box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
     '#bunnybot-bubble:active{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
-    '#bunnybot-bubble img{width:88%!important;height:88%!important;object-fit:contain!important;',
+    '#bunnybot-bubble img{width:94%!important;height:94%!important;object-fit:contain!important;',
     'transform:none!important;border-radius:0!important;display:block!important;',
     'filter:brightness(0) invert(1)!important;}',
-    '#bunnybot-bubble svg{width:52%!important;height:52%!important;fill:#FFFFFF!important;}',
+    '#bunnybot-bubble svg{width:56%!important;height:56%!important;}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
     '#bunnybot-panel{position:absolute!important;bottom:78px!important;right:0!important;',
@@ -61,14 +61,14 @@
 
     '#bunnybot-header{background:var(--bb-accent)!important;color:#FFFFFF!important;padding:14px 16px!important;',
     'display:flex!important;align-items:center!important;gap:10px!important;flex-shrink:0!important;}',
-    '#bunnybot-header .bb-avatar{width:26px!important;height:26px!important;border-radius:0!important;',
+    '#bunnybot-header .bb-avatar{width:32px!important;height:32px!important;border-radius:0!important;',
     'overflow:visible!important;flex-shrink:0!important;background:transparent!important;',
     'display:flex!important;align-items:center!important;justify-content:center!important;',
     'border:none!important;}',
     '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;object-fit:contain!important;',
     'transform:none!important;display:block!important;filter:brightness(0) invert(1)!important;}',
-    '#bunnybot-header .bb-avatar svg{width:60%!important;height:60%!important;fill:#FFFFFF!important;',
-    'margin:20%!important;}',
+    '#bunnybot-header .bb-avatar svg{width:100%!important;height:100%!important;margin:0!important;',
+    'stroke:#FFFFFF!important;}',
     '#bunnybot-header .bb-name{font-weight:600!important;font-size:14.5px!important;color:#FFFFFF!important;}',
     '#bunnybot-close{margin-left:auto!important;background:none!important;border:none!important;',
     'color:#FFFFFF!important;opacity:.7;cursor:pointer!important;font-size:20px!important;',
@@ -112,6 +112,11 @@
     'font-weight:600!important;color:#FFFFFF!important;white-space:nowrap!important;',
     'outline:none!important;appearance:none!important;-webkit-appearance:none!important;}',
     '#bunnybot-send:disabled{opacity:.5!important;cursor:default!important;}',
+
+    '#bunnybot-root.bb-icon-bubble #bunnybot-bubble,',
+    '#bunnybot-root.bb-icon-bubble #bunnybot-header{',
+    'background:linear-gradient(135deg,var(--bb-accent),color-mix(in srgb,var(--bb-accent) 65%,#000000))!important;}',
+    '#bunnybot-root.bb-icon-bubble #bunnybot-header .bb-avatar{background:rgba(255,255,255,0.16)!important;}',
   ].join('');
 
   var styleEl = document.createElement('style');
@@ -152,18 +157,22 @@
   var avatarEl = root.querySelector('#bunnybot-avatar');
 
   var BUBBLE_ICON_SVG =
-    '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">' +
-    '<path d="M12 3C7.03 3 3 6.58 3 11c0 2.39 1.19 4.53 3.08 6.02-.1.98-.5 2.24-1.45 3.48a.5.5 0 0 0 .5.79c2.03-.5 3.6-1.4 4.6-2.13.72.15 1.47.24 2.27.24 4.97 0 9-3.58 9-8s-4.03-8-9-8z"/>' +
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.582a.5.5 0 0 1 0 .963L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>' +
+    '<path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>' +
     '</svg>';
 
   function renderBubbleIcon() {
     if (state.config.iconStyle === 'bubble') {
       bubble.innerHTML = BUBBLE_ICON_SVG;
       avatarEl.innerHTML = BUBBLE_ICON_SVG;
+      root.classList.add('bb-icon-bubble');
     } else {
       var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-icon-minimal.png" alt="" />';
       bubble.innerHTML = imgHtml;
       avatarEl.innerHTML = imgHtml;
+      root.classList.remove('bb-icon-bubble');
     }
   }
   renderBubbleIcon();
