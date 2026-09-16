@@ -55,7 +55,8 @@
 
     '#bunnybot-panel{position:absolute!important;bottom:78px!important;right:0!important;',
     'width:360px!important;max-width:90vw!important;height:480px!important;max-height:72vh!important;',
-    'background:#FFFFFF!important;border-radius:18px!important;box-shadow:0 16px 48px rgba(16,21,31,0.22)!important;',
+    'background:#FFFFFF!important;border-radius:18px!important;',
+    'box-shadow:0 20px 50px -12px rgba(16,21,31,0.28),0 0 0 1px color-mix(in srgb,var(--bb-accent) 12%,transparent),0 0 40px -8px color-mix(in srgb,var(--bb-accent) 25%,transparent)!important;',
     'display:none;flex-direction:column!important;overflow:hidden!important;border:1px solid #E3E5EA!important;}',
     '#bunnybot-panel.bb-open{display:flex!important;}',
 
@@ -80,13 +81,27 @@
     'display:flex!important;flex-direction:column!important;gap:10px!important;background:#FFFFFF!important;}',
     '.bb-msg{max-width:82%!important;width:fit-content!important;padding:9px 12px!important;',
     'border-radius:14px!important;font-size:13.5px!important;line-height:1.45!important;',
-    'word-wrap:break-word!important;white-space:pre-wrap!important;}',
+    'word-wrap:break-word!important;white-space:pre-wrap!important;',
+    'transition:transform .15s ease,box-shadow .15s ease!important;cursor:default!important;}',
+    '.bb-msg:hover{transform:scale(1.02) translateY(-1px)!important;}',
     '.bb-msg-bot{align-self:flex-start!important;background:#F4F5F7!important;color:#10151F!important;',
-    'border-bottom-left-radius:4px!important;}',
+    'border-bottom-left-radius:4px!important;',
+    'box-shadow:0 2px 8px -2px rgba(16,21,31,0.12)!important;}',
+    '.bb-msg-bot:hover{box-shadow:0 6px 16px -4px rgba(16,21,31,0.2)!important;}',
     '.bb-msg-user{align-self:flex-end!important;background:var(--bb-accent)!important;color:#FFFFFF!important;',
-    'border-bottom-right-radius:4px!important;}',
-    '.bb-msg-typing{align-self:flex-start!important;background:#F4F5F7!important;color:#5B6472!important;',
-    'font-style:italic!important;}',
+    'border-bottom-right-radius:4px!important;',
+    'box-shadow:0 4px 14px -4px color-mix(in srgb,var(--bb-accent) 65%,transparent)!important;}',
+    '.bb-msg-user:hover{box-shadow:0 8px 22px -4px color-mix(in srgb,var(--bb-accent) 75%,transparent)!important;}',
+    '.bb-msg-typing{align-self:flex-start!important;background:#F4F5F7!important;',
+    'display:flex!important;align-items:center!important;gap:4px!important;padding:12px 14px!important;',
+    'box-shadow:0 2px 8px -2px rgba(16,21,31,0.12)!important;}',
+    '.bb-dot-typing{width:6px!important;height:6px!important;border-radius:50%!important;',
+    'background:#9CA3AF!important;display:inline-block!important;',
+    'animation:bb-bounce 1.2s infinite ease-in-out!important;}',
+    '.bb-dot-typing:nth-child(1){animation-delay:0s!important;}',
+    '.bb-dot-typing:nth-child(2){animation-delay:.15s!important;}',
+    '.bb-dot-typing:nth-child(3){animation-delay:.3s!important;}',
+    '@keyframes bb-bounce{0%,80%,100%{transform:scale(0.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}',
 
     '#bunnybot-quickreplies{display:flex!important;flex-direction:column!important;',
     'align-items:flex-end!important;gap:6px!important;padding:0 14px 14px!important;}',
@@ -117,6 +132,14 @@
     '#bunnybot-root.bb-icon-bubble #bunnybot-header{',
     'background:linear-gradient(135deg,var(--bb-accent),color-mix(in srgb,var(--bb-accent) 65%,#000000))!important;}',
     '#bunnybot-root.bb-icon-bubble #bunnybot-header .bb-avatar{background:rgba(255,255,255,0.16)!important;}',
+
+    '#bunnybot-root.bb-light-accent #bunnybot-bubble img,',
+    '#bunnybot-root.bb-light-accent #bunnybot-header .bb-avatar img{filter:brightness(0)!important;}',
+    '#bunnybot-root.bb-light-accent #bunnybot-bubble svg,',
+    '#bunnybot-root.bb-light-accent #bunnybot-header .bb-avatar svg{stroke:#10151F!important;}',
+    '#bunnybot-root.bb-light-accent #bunnybot-header .bb-name,',
+    '#bunnybot-root.bb-light-accent #bunnybot-close{color:#10151F!important;}',
+    '#bunnybot-root.bb-light-accent .bb-msg-user{color:#10151F!important;}',
   ].join('');
 
   var styleEl = document.createElement('style');
@@ -163,6 +186,18 @@
     '<path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>' +
     '</svg>';
 
+  function applyAccentColor(hex) {
+    root.style.setProperty('--bb-accent', hex);
+    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '');
+    var isLight = false;
+    if (m) {
+      var r = parseInt(m[1], 16), g = parseInt(m[2], 16), b = parseInt(m[3], 16);
+      var luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+      isLight = luminance > 0.68;
+    }
+    root.classList.toggle('bb-light-accent', isLight);
+  }
+
   function renderBubbleIcon() {
     if (state.config.iconStyle === 'bubble') {
       bubble.innerHTML = BUBBLE_ICON_SVG;
@@ -190,7 +225,7 @@
     var el = document.createElement('div');
     el.className = 'bb-msg bb-msg-typing';
     el.id = 'bunnybot-typing';
-    el.textContent = '…';
+    el.innerHTML = '<span class="bb-dot-typing"></span><span class="bb-dot-typing"></span><span class="bb-dot-typing"></span>';
     messagesEl.appendChild(el);
     messagesEl.scrollTop = messagesEl.scrollHeight;
   }
@@ -297,14 +332,14 @@
     .then(function (data) {
       if (data.widgetConfig) {
         state.config = data.widgetConfig;
-        root.style.setProperty('--bb-accent', state.config.accentColor);
+        applyAccentColor(state.config.accentColor);
         nameEl.textContent = state.config.botName;
         renderBubbleIcon();
       }
     })
     .catch(function () {
-      root.style.setProperty('--bb-accent', state.config.accentColor);
+      applyAccentColor(state.config.accentColor);
     });
 
-  root.style.setProperty('--bb-accent', state.config.accentColor);
+  applyAccentColor(state.config.accentColor);
 })();
