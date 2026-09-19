@@ -131,6 +131,8 @@
     '#bunnybot-root.bb-icon-bubble #bunnybot-bubble,',
     '#bunnybot-root.bb-icon-bubble #bunnybot-header{',
     'background:linear-gradient(135deg,var(--bb-accent),color-mix(in srgb,var(--bb-accent) 65%,#000000))!important;}',
+    '#bunnybot-bubble img.bb-shaded-icon,',
+    '#bunnybot-header .bb-avatar img.bb-shaded-icon{filter:none!important;}',
     '#bunnybot-root.bb-icon-bubble #bunnybot-header .bb-avatar{background:rgba(255,255,255,0.16)!important;}',
 
     '#bunnybot-root.bb-light-accent #bunnybot-bubble img,',
@@ -210,8 +212,9 @@
       avatarEl.innerHTML = BUBBLE_ICON_SVG;
       root.classList.add('bb-icon-bubble');
     } else if (state.config.iconStyle === 'message') {
-      bubble.innerHTML = MESSAGE_ICON_SVG;
-      avatarEl.innerHTML = MESSAGE_ICON_SVG;
+      var msgImgHtml = '<img class="bb-shaded-icon" src="' + API_BASE + '/signup/assets/message-icon.png" alt="" />';
+      bubble.innerHTML = msgImgHtml;
+      avatarEl.innerHTML = msgImgHtml;
       root.classList.remove('bb-icon-bubble');
     } else {
       var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-icon-minimal.png" alt="" />';
