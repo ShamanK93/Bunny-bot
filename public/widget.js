@@ -47,7 +47,7 @@
     '#bunnybot-bubble:focus,#bunnybot-bubble:focus-visible{outline:none!important;',
     'box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
     '#bunnybot-bubble:active{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
-    '#bunnybot-bubble img{width:100%!important;height:100%!important;object-fit:contain!important;',
+    '#bunnybot-bubble img{width:82%!important;height:82%!important;object-fit:contain!important;',
     'transform:none!important;border-radius:0!important;display:block!important;',
     'filter:brightness(0) invert(1)!important;}',
     '#bunnybot-bubble svg{width:60%!important;height:60%!important;}',
