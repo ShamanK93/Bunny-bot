@@ -124,6 +124,7 @@
         var iconStyle = client.widgetConfig.iconStyle || 'bunny';
         document.getElementById('icon-style-bunny').checked = iconStyle === 'bunny';
         document.getElementById('icon-style-bubble').checked = iconStyle === 'bubble';
+        document.getElementById('icon-style-message').checked = iconStyle === 'message';
         document.getElementById('quick-replies').value = (client.widgetConfig.quickReplies || []).join('\n');
         document.getElementById('snippet-box').textContent =
           '<script src="' + API_BASE + '/widget.js" data-api-key="' + client.apiKey + '"><' + '/script>';

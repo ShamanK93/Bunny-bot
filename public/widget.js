@@ -186,6 +186,12 @@
     '<path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/>' +
     '</svg>';
 
+  var MESSAGE_ICON_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" ' +
+    'stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>' +
+    '</svg>';
+
   function applyAccentColor(hex) {
     root.style.setProperty('--bb-accent', hex);
     var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '');
@@ -203,6 +209,10 @@
       bubble.innerHTML = BUBBLE_ICON_SVG;
       avatarEl.innerHTML = BUBBLE_ICON_SVG;
       root.classList.add('bb-icon-bubble');
+    } else if (state.config.iconStyle === 'message') {
+      bubble.innerHTML = MESSAGE_ICON_SVG;
+      avatarEl.innerHTML = MESSAGE_ICON_SVG;
+      root.classList.remove('bb-icon-bubble');
     } else {
       var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-icon-minimal.png" alt="" />';
       bubble.innerHTML = imgHtml;

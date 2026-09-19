@@ -150,10 +150,16 @@ export async function ensureDemoClient() {
   await db.read();
   let demo = db.data.clients.find((c) => c.id === 'demo-bunnybot');
   if (demo) {
+    var changed = false;
     if (!demo.widgetConfig.quickReplies) {
       demo.widgetConfig.quickReplies = ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'];
-      await db.write();
+      changed = true;
     }
+    if (demo.widgetConfig.iconStyle !== 'message') {
+      demo.widgetConfig.iconStyle = 'message';
+      changed = true;
+    }
+    if (changed) await db.write();
     return demo;
   }
 
@@ -169,7 +175,7 @@ export async function ensureDemoClient() {
       welcomeMessage: "Bonjour ! Posez-moi une question sur BunnyBot, comme le feraient vos futurs visiteurs.",
       accentColor: '#52525B',
       botName: 'BunnyBot',
-      iconStyle: 'bunny',
+      iconStyle: 'message',
       quickReplies: ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {
