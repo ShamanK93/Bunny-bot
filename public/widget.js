@@ -53,50 +53,50 @@
     '#bunnybot-bubble svg{width:60%!important;height:60%!important;}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
+    // Panneau : même direction artistique que la démo de la page d'accueil
+    // (fond nuit, bulles blush/blanches, pastille « En ligne », bouton orange).
     '#bunnybot-panel{position:absolute!important;bottom:78px!important;right:0!important;',
-    'width:360px!important;max-width:90vw!important;height:480px!important;max-height:72vh!important;',
-    'background:#FFFFFF!important;border-radius:18px!important;',
-    'box-shadow:0 20px 50px -12px rgba(16,21,31,0.28),0 0 0 1px color-mix(in srgb,var(--bb-accent) 12%,transparent),0 0 40px -8px color-mix(in srgb,var(--bb-accent) 25%,transparent)!important;',
-    'display:none;flex-direction:column!important;overflow:hidden!important;border:1px solid #E3E5EA!important;}',
-    '#bunnybot-panel.bb-open{display:flex!important;}',
+    'width:380px!important;max-width:90vw!important;height:520px!important;max-height:74vh!important;',
+    'background:#251F57!important;border-radius:22px!important;border:1px solid #3A3384!important;',
+    'box-shadow:0 30px 60px -20px rgba(10,8,30,0.65)!important;',
+    'font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;',
+    'display:none;flex-direction:column!important;overflow:hidden!important;}',
+    '#bunnybot-panel.bb-open{display:flex!important;animation:bb-rise .28s ease both!important;}',
+    '@keyframes bb-rise{from{opacity:0;transform:translateY(10px);}}',
 
-    '#bunnybot-header{background:var(--bb-accent)!important;color:#FFFFFF!important;padding:14px 16px!important;',
-    'display:flex!important;align-items:center!important;gap:10px!important;flex-shrink:0!important;}',
-    '#bunnybot-header .bb-avatar{width:44px!important;height:44px!important;border-radius:0!important;',
-    'overflow:visible!important;flex-shrink:0!important;background:transparent!important;',
-    'display:flex!important;align-items:center!important;justify-content:center!important;',
-    'border:none!important;}',
-    '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;object-fit:contain!important;',
-    'transform:none!important;display:block!important;filter:brightness(0) invert(1)!important;}',
-    '#bunnybot-header .bb-avatar svg{width:100%!important;height:100%!important;margin:0!important;',
-    'stroke:#FFFFFF!important;}',
-    '#bunnybot-header .bb-name{font-weight:600!important;font-size:14.5px!important;color:#FFFFFF!important;}',
+    '#bunnybot-header{background:transparent!important;color:#FFFFFF!important;padding:14px 18px!important;',
+    'display:flex!important;align-items:center!important;gap:12px!important;flex-shrink:0!important;',
+    'border-bottom:1px solid #3A3384!important;}',
+    '#bunnybot-header .bb-avatar{width:38px!important;height:38px!important;border-radius:12px!important;',
+    'overflow:hidden!important;flex-shrink:0!important;background:#F5F4FA!important;display:block!important;}',
+    '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;display:block!important;',
+    'object-fit:cover!important;transform:scale(1.7) translateY(4%)!important;filter:none!important;border-radius:0!important;}',
+    '#bunnybot-header .bb-id{display:flex!important;flex-direction:column!important;line-height:1.25!important;min-width:0!important;}',
+    '#bunnybot-header .bb-name{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif!important;',
+    'font-weight:700!important;font-size:16px!important;color:#FFFFFF!important;}',
+    '#bunnybot-header .bb-status{display:flex!important;align-items:center!important;gap:6px!important;',
+    'font-size:12.5px!important;color:rgba(255,255,255,0.65)!important;}',
+    '#bunnybot-header .bb-status::before{content:""!important;width:7px!important;height:7px!important;',
+    'border-radius:50%!important;background:#5FD38D!important;display:block!important;}',
     '#bunnybot-close{margin-left:auto!important;background:none!important;border:none!important;',
-    'color:#FFFFFF!important;opacity:.7;cursor:pointer!important;font-size:20px!important;',
+    'color:#FFFFFF!important;opacity:.7;cursor:pointer!important;font-size:24px!important;',
     'line-height:1!important;padding:4px!important;width:auto!important;height:auto!important;',
     'outline:none!important;appearance:none!important;-webkit-appearance:none!important;}',
-    '#bunnybot-close:hover{opacity:1;}',
+    '#bunnybot-close:hover,#bunnybot-close:focus-visible{opacity:1;}',
 
-    '#bunnybot-messages{flex:1 1 auto!important;overflow-y:auto!important;padding:14px!important;',
-    'display:flex!important;flex-direction:column!important;gap:10px!important;background:#FFFFFF!important;}',
-    '.bb-msg{max-width:82%!important;width:fit-content!important;padding:9px 12px!important;',
-    'border-radius:14px!important;font-size:13.5px!important;line-height:1.45!important;',
-    'word-wrap:break-word!important;white-space:pre-wrap!important;',
-    'transition:transform .15s ease,box-shadow .15s ease!important;cursor:default!important;}',
-    '.bb-msg:hover{transform:scale(1.02) translateY(-1px)!important;}',
-    '.bb-msg-bot{align-self:flex-start!important;background:#F4F5F7!important;color:#10151F!important;',
-    'border-bottom-left-radius:4px!important;',
-    'box-shadow:0 2px 8px -2px rgba(16,21,31,0.12)!important;}',
-    '.bb-msg-bot:hover{box-shadow:0 6px 16px -4px rgba(16,21,31,0.2)!important;}',
-    '.bb-msg-user{align-self:flex-end!important;background:var(--bb-accent)!important;color:#FFFFFF!important;',
-    'border-bottom-right-radius:4px!important;',
-    'box-shadow:0 4px 14px -4px color-mix(in srgb,var(--bb-accent) 65%,transparent)!important;}',
-    '.bb-msg-user:hover{box-shadow:0 8px 22px -4px color-mix(in srgb,var(--bb-accent) 75%,transparent)!important;}',
-    '.bb-msg-typing{align-self:flex-start!important;background:#F4F5F7!important;',
-    'display:flex!important;align-items:center!important;gap:4px!important;padding:12px 14px!important;',
-    'box-shadow:0 2px 8px -2px rgba(16,21,31,0.12)!important;}',
+    '#bunnybot-messages{flex:1 1 auto!important;overflow-y:auto!important;padding:18px!important;',
+    'display:flex!important;flex-direction:column!important;gap:10px!important;background:transparent!important;}',
+    '.bb-msg{max-width:86%!important;width:fit-content!important;padding:10px 14px!important;',
+    'border-radius:16px!important;font-size:14.5px!important;line-height:1.45!important;',
+    'word-wrap:break-word!important;white-space:pre-wrap!important;color:#1A1640!important;',
+    'animation:bb-pop .3s ease both!important;}',
+    '@keyframes bb-pop{from{opacity:0;transform:translateY(8px);}}',
+    '.bb-msg-bot{align-self:flex-start!important;background:#FFFFFF!important;border-bottom-left-radius:5px!important;}',
+    '.bb-msg-user{align-self:flex-end!important;background:#FBD9D3!important;border-bottom-right-radius:5px!important;}',
+    '.bb-msg-typing{align-self:flex-start!important;background:#FFFFFF!important;',
+    'display:flex!important;align-items:center!important;gap:4px!important;padding:13px 14px!important;}',
     '.bb-dot-typing{width:6px!important;height:6px!important;border-radius:50%!important;',
-    'background:#9CA3AF!important;display:inline-block!important;',
+    'background:#9B98B3!important;display:inline-block!important;',
     'animation:bb-bounce 1.2s infinite ease-in-out!important;}',
     '.bb-dot-typing:nth-child(1){animation-delay:0s!important;}',
     '.bb-dot-typing:nth-child(2){animation-delay:.15s!important;}',
@@ -104,49 +104,51 @@
     '@keyframes bb-bounce{0%,80%,100%{transform:scale(0.6);opacity:.4;}40%{transform:scale(1);opacity:1;}}',
 
     '#bunnybot-quickreplies{display:flex!important;flex-direction:column!important;',
-    'align-items:flex-end!important;gap:6px!important;padding:0 14px 14px!important;}',
-    '.bb-quickreply{background:#FFFFFF!important;border:1px solid #E3E5EA!important;',
-    'border-radius:999px!important;padding:8px 14px!important;font-size:12.5px!important;',
-    'color:#10151F!important;cursor:pointer!important;text-align:left!important;',
-    'max-width:88%!important;outline:none!important;appearance:none!important;',
-    '-webkit-appearance:none!important;font-family:inherit!important;}',
-    '.bb-quickreply:hover{border-color:var(--bb-accent)!important;}',
+    'align-items:flex-end!important;gap:8px!important;padding:0 18px 16px!important;}',
+    '.bb-quickreply{background:transparent!important;border:1.5px solid #3A3384!important;',
+    'border-radius:999px!important;padding:8px 14px!important;font-size:13.5px!important;',
+    'color:#FFFFFF!important;cursor:pointer!important;text-align:left!important;',
+    'max-width:90%!important;outline:none!important;appearance:none!important;',
+    '-webkit-appearance:none!important;font-family:inherit!important;transition:border-color .15s ease!important;}',
+    '.bb-quickreply:hover,.bb-quickreply:focus-visible{border-color:#FF8A2B!important;}',
 
     '#bunnybot-form{display:flex!important;align-items:center!important;gap:8px!important;',
-    'padding:10px!important;border-top:1px solid #E3E5EA!important;background:#FFFFFF!important;',
+    'padding:12px 14px!important;border-top:1px solid #3A3384!important;background:transparent!important;',
     'flex-shrink:0!important;width:100%!important;}',
     '#bunnybot-input{flex:1 1 auto!important;width:auto!important;min-width:0!important;',
-    'max-width:none!important;height:40px!important;border:1px solid #E3E5EA!important;',
-    'border-radius:10px!important;padding:0 12px!important;font-size:13.5px!important;',
-    'font-family:inherit!important;outline:none!important;background:#fff!important;',
-    'color:#10151F!important;display:block!important;}',
-    '#bunnybot-input:focus{border-color:var(--bb-accent)!important;}',
-    '#bunnybot-send{flex:0 0 auto!important;width:auto!important;height:40px!important;',
-    'background:var(--bb-accent)!important;border:none!important;border-radius:10px!important;',
-    'padding:0 16px!important;cursor:pointer!important;font-size:13.5px!important;',
-    'font-weight:600!important;color:#FFFFFF!important;white-space:nowrap!important;',
-    'outline:none!important;appearance:none!important;-webkit-appearance:none!important;}',
+    'max-width:none!important;height:42px!important;border:1.5px solid #3A3384!important;',
+    'border-radius:12px!important;padding:0 14px!important;font-size:14.5px!important;',
+    'font-family:inherit!important;outline:none!important;background:#1A1640!important;',
+    'color:#FFFFFF!important;display:block!important;}',
+    '#bunnybot-input::placeholder{color:rgba(255,255,255,0.5)!important;}',
+    '#bunnybot-input:focus{border-color:#FF8A2B!important;}',
+    '#bunnybot-send{flex:0 0 auto!important;width:auto!important;height:42px!important;',
+    'background:#FF8A2B!important;border:none!important;border-radius:12px!important;',
+    'padding:0 18px!important;cursor:pointer!important;font-size:14.5px!important;font-family:inherit!important;',
+    'font-weight:700!important;color:#1A1640!important;white-space:nowrap!important;',
+    'outline:none!important;appearance:none!important;-webkit-appearance:none!important;',
+    'transition:background .15s ease!important;}',
+    '#bunnybot-send:hover{background:#EC730F!important;}',
     '#bunnybot-send:disabled{opacity:.5!important;cursor:default!important;}',
+    '@media (prefers-reduced-motion:reduce){#bunnybot-panel,.bb-msg{animation:none!important;}}',
 
-    '#bunnybot-root.bb-icon-bubble #bunnybot-bubble,',
-    '#bunnybot-root.bb-icon-bubble #bunnybot-header{',
+    // Lanceur (la couleur d'accent du client s'applique ici)
+    '#bunnybot-root.bb-icon-bubble #bunnybot-bubble{',
     'background:linear-gradient(135deg,var(--bb-accent),color-mix(in srgb,var(--bb-accent) 65%,#000000))!important;}',
-    '#bunnybot-bubble img.bb-shaded-icon,',
-    '#bunnybot-header .bb-avatar img.bb-shaded-icon{filter:none!important;}',
-    '#bunnybot-root.bb-icon-bubble #bunnybot-header .bb-avatar{background:rgba(255,255,255,0.16)!important;}',
-
-    '#bunnybot-root.bb-light-accent #bunnybot-bubble img,',
-    '#bunnybot-root.bb-light-accent #bunnybot-header .bb-avatar img{filter:brightness(0)!important;}',
-    '#bunnybot-root.bb-light-accent #bunnybot-bubble svg,',
-    '#bunnybot-root.bb-light-accent #bunnybot-header .bb-avatar svg{stroke:#10151F!important;}',
-    '#bunnybot-root.bb-light-accent #bunnybot-header .bb-name,',
-    '#bunnybot-root.bb-light-accent #bunnybot-close{color:#10151F!important;}',
-    '#bunnybot-root.bb-light-accent .bb-msg-user{color:#10151F!important;}',
+    '#bunnybot-bubble img.bb-shaded-icon{filter:none!important;}',
+    '#bunnybot-root.bb-light-accent #bunnybot-bubble img{filter:brightness(0)!important;}',
+    '#bunnybot-root.bb-light-accent #bunnybot-bubble svg{stroke:#10151F!important;}',
   ].join('');
 
   var styleEl = document.createElement('style');
   styleEl.textContent = css;
   document.head.appendChild(styleEl);
+
+  // Polices de la charte BunnyBot (repli sur les polices système si bloquées).
+  var fontsEl = document.createElement('link');
+  fontsEl.rel = 'stylesheet';
+  fontsEl.href = 'https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700&family=Instrument+Sans:wght@400;500;600;700&display=swap';
+  document.head.appendChild(fontsEl);
 
   // ---------------------------------------------------------------------
   // DOM
@@ -157,7 +159,8 @@
     '<div id="bunnybot-panel">' +
     '  <div id="bunnybot-header">' +
     '    <span class="bb-avatar" id="bunnybot-avatar"></span>' +
-    '    <span class="bb-name" id="bunnybot-name">BunnyBot</span>' +
+    '    <span class="bb-id"><span class="bb-name" id="bunnybot-name">BunnyBot</span>' +
+    '    <span class="bb-status">En ligne</span></span>' +
     '    <button id="bunnybot-close" type="button" aria-label="Fermer">&times;</button>' +
     '  </div>' +
     '  <div id="bunnybot-messages"></div>' +
@@ -206,24 +209,22 @@
     root.classList.toggle('bb-light-accent', isLight);
   }
 
+  avatarEl.innerHTML = '<img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" />';
+
   function renderBubbleIcon() {
     if (state.config.iconStyle === 'chat') {
       bubble.innerHTML = MESSAGE_ICON_SVG;
-      avatarEl.innerHTML = MESSAGE_ICON_SVG;
       root.classList.add('bb-icon-bubble');
     } else if (state.config.iconStyle === 'bubble') {
       bubble.innerHTML = BUBBLE_ICON_SVG;
-      avatarEl.innerHTML = BUBBLE_ICON_SVG;
       root.classList.add('bb-icon-bubble');
     } else if (state.config.iconStyle === 'message') {
       var msgImgHtml = '<img class="bb-shaded-icon" src="' + API_BASE + '/signup/assets/message-icon.png" alt="" />';
       bubble.innerHTML = msgImgHtml;
-      avatarEl.innerHTML = msgImgHtml;
       root.classList.remove('bb-icon-bubble');
     } else {
       var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-icon-minimal.png" alt="" />';
       bubble.innerHTML = imgHtml;
-      avatarEl.innerHTML = imgHtml;
       root.classList.remove('bb-icon-bubble');
     }
   }
