@@ -4,13 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mon espace — BunnyBot</title>
+  <link rel="icon" href="../signup/assets/bunny-mascot.png" type="image/png" />
+  <link rel="stylesheet" href="../shared/brand.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <div id="app">
     <header class="topbar">
-      <div class="brand"><img src="../signup/assets/bunny-mascot.png" alt="BunnyBot" /> <span id="business-name-header">BunnyBot</span></div>
+      <div class="brand-mark"><span class="logo"><img src="../signup/assets/bunny-mascot.png" alt="" /></span><span id="business-name-header">BunnyBot</span></div>
       <button class="logout" id="logout-btn">Se déconnecter</button>
     </header>
 
@@ -53,8 +55,8 @@
         <label>Icône du widget</label>
         <div class="icon-choice">
           <label class="icon-choice-option">
-            <input type="radio" name="icon-style" value="bunny" id="icon-style-bunny" />
-            <span>🐰 Lapin BunnyBot</span>
+            <input type="radio" name="icon-style" value="chat" id="icon-style-chat" />
+            <span>💬 Bulle minimaliste (recommandé)</span>
           </label>
           <label class="icon-choice-option">
             <input type="radio" name="icon-style" value="bubble" id="icon-style-bubble" />
@@ -62,7 +64,11 @@
           </label>
           <label class="icon-choice-option">
             <input type="radio" name="icon-style" value="message" id="icon-style-message" />
-            <span>💬 Message</span>
+            <span>💬 Message illustré</span>
+          </label>
+          <label class="icon-choice-option">
+            <input type="radio" name="icon-style" value="bunny" id="icon-style-bunny" />
+            <span>🐰 Lapin BunnyBot</span>
           </label>
         </div>
 

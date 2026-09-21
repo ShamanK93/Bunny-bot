@@ -121,7 +121,8 @@
         document.getElementById('welcome-message').value = client.widgetConfig.welcomeMessage;
         document.getElementById('bot-name').value = client.widgetConfig.botName;
         document.getElementById('accent-color').value = client.widgetConfig.accentColor;
-        var iconStyle = client.widgetConfig.iconStyle || 'bunny';
+        var iconStyle = client.widgetConfig.iconStyle || 'chat';
+        document.getElementById('icon-style-chat').checked = iconStyle === 'chat';
         document.getElementById('icon-style-bunny').checked = iconStyle === 'bunny';
         document.getElementById('icon-style-bubble').checked = iconStyle === 'bubble';
         document.getElementById('icon-style-message').checked = iconStyle === 'message';

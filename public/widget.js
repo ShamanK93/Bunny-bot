@@ -16,9 +16,9 @@
     history: [], // {role, content}
     config: {
       welcomeMessage: 'Bonjour !',
-      accentColor: '#52525B',
+      accentColor: '#1A1640',
       botName: 'BunnyBot',
-      iconStyle: 'bunny',
+      iconStyle: 'chat',
       quickReplies: [],
     },
     isNewConversation: true,
@@ -207,7 +207,11 @@
   }
 
   function renderBubbleIcon() {
-    if (state.config.iconStyle === 'bubble') {
+    if (state.config.iconStyle === 'chat') {
+      bubble.innerHTML = MESSAGE_ICON_SVG;
+      avatarEl.innerHTML = MESSAGE_ICON_SVG;
+      root.classList.add('bb-icon-bubble');
+    } else if (state.config.iconStyle === 'bubble') {
       bubble.innerHTML = BUBBLE_ICON_SVG;
       avatarEl.innerHTML = BUBBLE_ICON_SVG;
       root.classList.add('bb-icon-bubble');

@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600;700&display=swap');
+
+/*
+  BunnyBot — identité partagée (page d'inscription, espace client, tableau de bord).
+  La palette vient de la mascotte : gris-lavande froid pour les surfaces, orange du micro
+  pour l'action principale, bleu nuit pour rappeler l'heure à laquelle le bot travaille.
+*/
+:root {
+  --nuit: #1a1640;
+  --nuit-2: #251f57;
+  --nuit-3: #3a3384;
+  --brume: #f5f4fa;
+  --paper: #ffffff;
+  --carotte: #ff8a2b;
+  --carotte-dark: #ec730f;
+  --blush: #fbd9d3;
+  --amber: #f5a524;
+  --link: #4636c8;
+
+  --ink: var(--nuit);
+  --text: var(--nuit);
+  --muted: #5e5b7a;
+  --border: #e4e2f0;
+  --panel: var(--brume);
+  --accent: var(--link);
+  --success: #1f7a4d;
+  --danger: #b3261e;
+
+  --radius: 12px;
+  --radius-lg: 22px;
+
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Instrument Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--brume);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--carotte);
+  outline-offset: 2px;
+}
+
+/* Logo : la mascotte est cadrée sur la tête pour rester lisible en petit. */
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+  font-family: var(--font-display);
+  font-size: 21px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+.brand-mark .logo {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 12px;
+  background: var(--brume);
+  overflow: hidden;
+}
+.brand-mark .logo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transform: scale(1.7) translateY(4%);
+}
+
+/* Boutons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: var(--radius);
+  background: var(--carotte);
+  color: var(--nuit);
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .15s ease, transform .15s ease;
+}
+.btn:hover { background: var(--carotte-dark); }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .6; cursor: default; }
+
+/* Champs de formulaire */
+label {
+  display: block;
+  margin: 16px 0 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+label:first-of-type { margin-top: 0; }
+input:not([type=radio]):not([type=checkbox]):not([type=color]), textarea {
+  width: 100%;
+  padding: 11px 13px;
+  border: 1.5px solid #cfcce3;
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+input::placeholder, textarea::placeholder { color: #9b98b3; }
+input:not([type=radio]):not([type=checkbox]):not([type=color]):focus, textarea:focus {
+  outline: none;
+  border-color: var(--nuit-3);
+  box-shadow: 0 0 0 4px rgba(70, 54, 200, 0.14);
+}
+textarea { min-height: 96px; resize: vertical; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

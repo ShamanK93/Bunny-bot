@@ -47,7 +47,8 @@
         document.getElementById('welcome-message').value = me.widgetConfig.welcomeMessage;
         document.getElementById('bot-name').value = me.widgetConfig.botName;
         document.getElementById('accent-color').value = me.widgetConfig.accentColor;
-        var iconStyle = me.widgetConfig.iconStyle || 'bunny';
+        var iconStyle = me.widgetConfig.iconStyle || 'chat';
+        document.getElementById('icon-style-chat').checked = iconStyle === 'chat';
         document.getElementById('icon-style-bunny').checked = iconStyle === 'bunny';
         document.getElementById('icon-style-bubble').checked = iconStyle === 'bubble';
         document.getElementById('icon-style-message').checked = iconStyle === 'message';

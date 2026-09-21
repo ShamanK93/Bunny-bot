@@ -48,9 +48,9 @@ export async function createClient({ businessName, email, courseContext, passwor
     courseContext: courseContext || '',
     widgetConfig: {
       welcomeMessage: `Bonjour ! Je suis l'assistant de ${businessName}. Comment puis-je vous aider ?`,
-      accentColor: '#52525B',
+      accentColor: '#1A1640',
       botName: 'BunnyBot',
-      iconStyle: 'bunny', // 'bunny' | 'bubble'
+      iconStyle: 'chat', // 'chat' | 'bubble' | 'message' | 'bunny'
       quickReplies: ['Quel est le prix ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {
@@ -155,8 +155,8 @@ export async function ensureDemoClient() {
       demo.widgetConfig.quickReplies = ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'];
       changed = true;
     }
-    if (demo.widgetConfig.iconStyle !== 'message') {
-      demo.widgetConfig.iconStyle = 'message';
+    if (demo.widgetConfig.iconStyle !== 'chat') {
+      demo.widgetConfig.iconStyle = 'chat';
       changed = true;
     }
     if (changed) await db.write();
@@ -173,9 +173,9 @@ export async function ensureDemoClient() {
       "BunnyBot est un chatbot pour créateurs de formations en ligne. Il s'installe en une ligne de code sur un site, répond aux questions des visiteurs uniquement à partir du contenu fourni par le créateur (jamais d'invention), 24h/24. Tarif : 39€/mois après un essai gratuit de 14 jours sans carte bancaire. Résiliable à tout moment. Propulsé par l'API Claude, facturation par Stripe.",
     widgetConfig: {
       welcomeMessage: "Bonjour ! Posez-moi une question sur BunnyBot, comme le feraient vos futurs visiteurs.",
-      accentColor: '#52525B',
+      accentColor: '#1A1640',
       botName: 'BunnyBot',
-      iconStyle: 'message',
+      iconStyle: 'chat',
       quickReplies: ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {

