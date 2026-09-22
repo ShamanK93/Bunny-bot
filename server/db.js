@@ -50,7 +50,7 @@ export async function createClient({ businessName, email, courseContext, passwor
       welcomeMessage: `Bonjour ! Je suis l'assistant de ${businessName}. Comment puis-je vous aider ?`,
       accentColor: '#1A1640',
       botName: 'BunnyBot',
-      iconStyle: 'chat', // 'chat' | 'bubble' | 'message' | 'bunny'
+      iconStyle: 'bunny', // 'chat' | 'bubble' | 'message' | 'bunny'
       quickReplies: ['Quel est le prix ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {
@@ -155,8 +155,8 @@ export async function ensureDemoClient() {
       demo.widgetConfig.quickReplies = ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'];
       changed = true;
     }
-    if (demo.widgetConfig.iconStyle !== 'chat') {
-      demo.widgetConfig.iconStyle = 'chat';
+    if (demo.widgetConfig.iconStyle !== 'bunny') {
+      demo.widgetConfig.iconStyle = 'bunny';
       changed = true;
     }
     if (changed) await db.write();
@@ -175,7 +175,7 @@ export async function ensureDemoClient() {
       welcomeMessage: "Bonjour ! Posez-moi une question sur BunnyBot, comme le feraient vos futurs visiteurs.",
       accentColor: '#1A1640',
       botName: 'BunnyBot',
-      iconStyle: 'chat',
+      iconStyle: 'bunny',
       quickReplies: ['Combien ça coûte ?', "Comment ça s'installe ?", 'Puis-je annuler à tout moment ?'],
     },
     subscription: {

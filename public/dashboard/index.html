@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>BunnyBot — Tableau de bord</title>
-  <link rel="icon" href="../signup/assets/bunny-mascot.png" type="image/png" />
+  <link rel="icon" href="../signup/assets/bunny-face.png" type="image/png" />
   <link rel="stylesheet" href="../shared/brand.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -12,7 +12,7 @@
 
   <div id="login-screen">
     <div id="login-box">
-      <div class="brand-mark"><span class="logo"><img src="../signup/assets/bunny-mascot.png" alt="" /></span>BunnyBot</div>
+      <div class="brand-mark"><span class="logo"><img src="../signup/assets/bunny-face.png" alt="" /></span>BunnyBot</div>
       <p class="hint">Tableau de bord administrateur. Entre ton token d'accès pour continuer.</p>
       <input id="token-input" type="password" placeholder="Token admin" autofocus />
       <div id="login-error">Token invalide.</div>
@@ -22,7 +22,7 @@
 
   <div id="app">
     <header class="topbar">
-      <div class="brand-mark"><span class="logo"><img src="../signup/assets/bunny-mascot.png" alt="" /></span>BunnyBot</div>
+      <div class="brand-mark"><span class="logo"><img src="../signup/assets/bunny-face.png" alt="" /></span>BunnyBot</div>
       <div class="meta">Tableau de bord</div>
     </header>
 
@@ -96,8 +96,12 @@
       <label>Icône du widget (bulle flottante sur le site du client)</label>
       <div class="icon-choice">
         <label class="icon-choice-option">
+          <input type="radio" name="icon-style" value="bunny" id="icon-style-bunny" />
+          <span>🐰 Lapin BunnyBot (recommandé)</span>
+        </label>
+        <label class="icon-choice-option">
           <input type="radio" name="icon-style" value="chat" id="icon-style-chat" />
-          <span>💬 Bulle minimaliste (recommandé)</span>
+          <span>💬 Bulle minimaliste</span>
         </label>
         <label class="icon-choice-option">
           <input type="radio" name="icon-style" value="bubble" id="icon-style-bubble" />
@@ -106,10 +110,6 @@
         <label class="icon-choice-option">
           <input type="radio" name="icon-style" value="message" id="icon-style-message" />
           <span>💬 Message illustré</span>
-        </label>
-        <label class="icon-choice-option">
-          <input type="radio" name="icon-style" value="bunny" id="icon-style-bunny" />
-          <span>🐰 Lapin BunnyBot</span>
         </label>
       </div>
 

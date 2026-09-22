@@ -18,7 +18,7 @@
       welcomeMessage: 'Bonjour !',
       accentColor: '#1A1640',
       botName: 'BunnyBot',
-      iconStyle: 'chat',
+      iconStyle: 'bunny',
       quickReplies: [],
     },
     isNewConversation: true,
@@ -67,10 +67,11 @@
     '#bunnybot-header{background:transparent!important;color:#FFFFFF!important;padding:14px 18px!important;',
     'display:flex!important;align-items:center!important;gap:12px!important;flex-shrink:0!important;',
     'border-bottom:1px solid #3A3384!important;}',
-    '#bunnybot-header .bb-avatar{width:38px!important;height:38px!important;border-radius:12px!important;',
-    'overflow:hidden!important;flex-shrink:0!important;background:#F5F4FA!important;display:block!important;}',
+    '#bunnybot-header .bb-avatar{width:46px!important;height:46px!important;border-radius:0!important;',
+    'overflow:visible!important;flex-shrink:0!important;background:none!important;display:flex!important;',
+    'align-items:center!important;justify-content:center!important;}',
     '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;display:block!important;',
-    'object-fit:cover!important;transform:scale(1.7) translateY(4%)!important;filter:none!important;border-radius:0!important;}',
+    'object-fit:contain!important;transform:none!important;filter:none!important;border-radius:0!important;}',
     '#bunnybot-header .bb-id{display:flex!important;flex-direction:column!important;line-height:1.25!important;min-width:0!important;}',
     '#bunnybot-header .bb-name{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif!important;',
     'font-weight:700!important;font-size:16px!important;color:#FFFFFF!important;}',
@@ -89,10 +90,16 @@
     '.bb-msg{max-width:86%!important;width:fit-content!important;padding:10px 14px!important;',
     'border-radius:16px!important;font-size:14.5px!important;line-height:1.45!important;',
     'word-wrap:break-word!important;white-space:pre-wrap!important;color:#1A1640!important;',
-    'animation:bb-pop .3s ease both!important;}',
+    'animation:bb-pop .3s ease both!important;',
+    'transition:transform .15s ease,box-shadow .15s ease!important;cursor:default!important;}',
     '@keyframes bb-pop{from{opacity:0;transform:translateY(8px);}}',
-    '.bb-msg-bot{align-self:flex-start!important;background:#FFFFFF!important;border-bottom-left-radius:5px!important;}',
-    '.bb-msg-user{align-self:flex-end!important;background:#FBD9D3!important;border-bottom-right-radius:5px!important;}',
+    '.bb-msg:hover{transform:scale(1.02) translateY(-1px)!important;}',
+    '.bb-msg-bot{align-self:flex-start!important;background:#FFFFFF!important;border-bottom-left-radius:5px!important;',
+    'box-shadow:0 2px 8px -2px rgba(10,8,30,0.18)!important;}',
+    '.bb-msg-bot:hover{box-shadow:0 6px 16px -4px rgba(10,8,30,0.28)!important;}',
+    '.bb-msg-user{align-self:flex-end!important;background:#FBD9D3!important;border-bottom-right-radius:5px!important;',
+    'box-shadow:0 2px 8px -2px rgba(10,8,30,0.18)!important;}',
+    '.bb-msg-user:hover{box-shadow:0 6px 16px -4px rgba(10,8,30,0.28)!important;}',
     '.bb-msg-typing{align-self:flex-start!important;background:#FFFFFF!important;',
     'display:flex!important;align-items:center!important;gap:4px!important;padding:13px 14px!important;}',
     '.bb-dot-typing{width:6px!important;height:6px!important;border-radius:50%!important;',
@@ -130,13 +137,15 @@
     'transition:background .15s ease!important;}',
     '#bunnybot-send:hover{background:#EC730F!important;}',
     '#bunnybot-send:disabled{opacity:.5!important;cursor:default!important;}',
-    '@media (prefers-reduced-motion:reduce){#bunnybot-panel,.bb-msg{animation:none!important;}}',
+    '@media (prefers-reduced-motion:reduce){#bunnybot-panel,.bb-msg{animation:none!important;}',
+    '.bb-msg:hover,.bb-msg-bot:hover,.bb-msg-user:hover{transform:none!important;}}',
 
     // Lanceur (la couleur d'accent du client s'applique ici)
     '#bunnybot-root.bb-icon-bubble #bunnybot-bubble{',
     'background:linear-gradient(135deg,var(--bb-accent),color-mix(in srgb,var(--bb-accent) 65%,#000000))!important;}',
     '#bunnybot-bubble img.bb-shaded-icon{filter:none!important;}',
     '#bunnybot-root.bb-light-accent #bunnybot-bubble img{filter:brightness(0)!important;}',
+    '#bunnybot-root.bb-light-accent #bunnybot-bubble img.bb-shaded-icon{filter:none!important;}',
     '#bunnybot-root.bb-light-accent #bunnybot-bubble svg{stroke:#10151F!important;}',
   ].join('');
 
@@ -209,7 +218,8 @@
     root.classList.toggle('bb-light-accent', isLight);
   }
 
-  avatarEl.innerHTML = '<img src="' + API_BASE + '/signup/assets/bunny-mascot.png" alt="" />';
+  var BUNNY_FACE_SRC = API_BASE + '/signup/assets/bunny-face.png';
+  avatarEl.innerHTML = '<img src="' + BUNNY_FACE_SRC + '" alt="" />';
 
   function renderBubbleIcon() {
     if (state.config.iconStyle === 'chat') {
@@ -223,7 +233,8 @@
       bubble.innerHTML = msgImgHtml;
       root.classList.remove('bb-icon-bubble');
     } else {
-      var imgHtml = '<img src="' + API_BASE + '/signup/assets/bunny-icon-minimal.png" alt="" />';
+      // 'bunny' — le logo de base : la vraie mascotte en couleur, pas le tracé minimaliste.
+      var imgHtml = '<img class="bb-shaded-icon" src="' + BUNNY_FACE_SRC + '" alt="" />';
       bubble.innerHTML = imgHtml;
       root.classList.remove('bb-icon-bubble');
     }

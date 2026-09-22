@@ -53,11 +53,11 @@ body {
   outline-offset: 2px;
 }
 
-/* Logo : la mascotte est cadrée sur la tête pour rester lisible en petit. */
+/* Logo : la mascotte se détache directement, sans plaque de fond. */
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   color: inherit;
   text-decoration: none;
   font-family: var(--font-display);
@@ -66,19 +66,16 @@ body {
   letter-spacing: -0.02em;
 }
 .brand-mark .logo {
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   flex: none;
-  border-radius: 12px;
-  background: var(--brume);
-  overflow: hidden;
+  display: block;
 }
 .brand-mark .logo img {
   width: 100%;
   height: 100%;
   display: block;
-  object-fit: cover;
-  transform: scale(1.7) translateY(4%);
+  object-fit: contain;
 }
 
 /* Boutons */
