@@ -38,7 +38,7 @@
     'z-index:2147483000!important;',
     'font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;}',
 
-    '#bunnybot-bubble{width:64px!important;height:64px!important;border-radius:50%!important;',
+    '#bunnybot-bubble{width:72px!important;height:72px!important;border-radius:50%!important;',
     'border:none!important;cursor:pointer!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;',
     'display:flex!important;align-items:center!important;justify-content:center!important;',
     'padding:0!important;background:var(--bb-accent)!important;transition:transform .15s ease!important;',
@@ -47,40 +47,40 @@
     '#bunnybot-bubble:focus,#bunnybot-bubble:focus-visible{outline:none!important;',
     'box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
     '#bunnybot-bubble:active{outline:none!important;box-shadow:0 6px 20px rgba(16,21,31,0.3)!important;}',
-    '#bunnybot-bubble img{width:82%!important;height:82%!important;object-fit:contain!important;',
+    '#bunnybot-bubble img{width:90%!important;height:90%!important;object-fit:contain!important;',
     'transform:none!important;border-radius:0!important;display:block!important;',
     'filter:brightness(0) invert(1)!important;}',
-    '#bunnybot-bubble svg{width:60%!important;height:60%!important;}',
+    '#bunnybot-bubble svg{width:62%!important;height:62%!important;}',
     '#bunnybot-bubble:hover{transform:scale(1.06);}',
 
-    // Panneau : même direction artistique que la démo de la page d'accueil
-    // (fond nuit, bulles blush/blanches, pastille « En ligne », bouton orange).
-    '#bunnybot-panel{position:absolute!important;bottom:78px!important;right:0!important;',
+    // Panneau : reprend la couleur d'accent choisie par chaque client, pour que
+    // la fenêtre de chat suive la direction artistique de son propre site.
+    '#bunnybot-panel{position:absolute!important;bottom:86px!important;right:0!important;',
     'width:380px!important;max-width:90vw!important;height:520px!important;max-height:74vh!important;',
-    'background:#251F57!important;border-radius:22px!important;border:1px solid #3A3384!important;',
+    'background:var(--bb-panel-bg)!important;border-radius:22px!important;border:1px solid var(--bb-panel-border)!important;',
     'box-shadow:0 30px 60px -20px rgba(10,8,30,0.65)!important;',
     'font-family:"Instrument Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif!important;',
     'display:none;flex-direction:column!important;overflow:hidden!important;}',
     '#bunnybot-panel.bb-open{display:flex!important;animation:bb-rise .28s ease both!important;}',
     '@keyframes bb-rise{from{opacity:0;transform:translateY(10px);}}',
 
-    '#bunnybot-header{background:transparent!important;color:#FFFFFF!important;padding:14px 18px!important;',
+    '#bunnybot-header{background:transparent!important;color:var(--bb-text-primary)!important;padding:14px 18px!important;',
     'display:flex!important;align-items:center!important;gap:12px!important;flex-shrink:0!important;',
-    'border-bottom:1px solid #3A3384!important;}',
-    '#bunnybot-header .bb-avatar{width:46px!important;height:46px!important;border-radius:0!important;',
+    'border-bottom:1px solid var(--bb-panel-border)!important;}',
+    '#bunnybot-header .bb-avatar{width:58px!important;height:58px!important;border-radius:0!important;',
     'overflow:visible!important;flex-shrink:0!important;background:none!important;display:flex!important;',
     'align-items:center!important;justify-content:center!important;}',
     '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;display:block!important;',
     'object-fit:contain!important;transform:none!important;filter:none!important;border-radius:0!important;}',
     '#bunnybot-header .bb-id{display:flex!important;flex-direction:column!important;line-height:1.25!important;min-width:0!important;}',
     '#bunnybot-header .bb-name{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif!important;',
-    'font-weight:700!important;font-size:16px!important;color:#FFFFFF!important;}',
+    'font-weight:700!important;font-size:16px!important;color:var(--bb-text-primary)!important;}',
     '#bunnybot-header .bb-status{display:flex!important;align-items:center!important;gap:6px!important;',
-    'font-size:12.5px!important;color:rgba(255,255,255,0.65)!important;}',
+    'font-size:12.5px!important;color:var(--bb-text-secondary)!important;}',
     '#bunnybot-header .bb-status::before{content:""!important;width:7px!important;height:7px!important;',
     'border-radius:50%!important;background:#5FD38D!important;display:block!important;}',
     '#bunnybot-close{margin-left:auto!important;background:none!important;border:none!important;',
-    'color:#FFFFFF!important;opacity:.7;cursor:pointer!important;font-size:24px!important;',
+    'color:var(--bb-text-primary)!important;opacity:.7;cursor:pointer!important;font-size:24px!important;',
     'line-height:1!important;padding:4px!important;width:auto!important;height:auto!important;',
     'outline:none!important;appearance:none!important;-webkit-appearance:none!important;}',
     '#bunnybot-close:hover,#bunnybot-close:focus-visible{opacity:1;}',
@@ -89,18 +89,18 @@
     'display:flex!important;flex-direction:column!important;gap:10px!important;background:transparent!important;}',
     '.bb-msg{max-width:86%!important;width:fit-content!important;padding:10px 14px!important;',
     'border-radius:16px!important;font-size:14.5px!important;line-height:1.45!important;',
-    'word-wrap:break-word!important;white-space:pre-wrap!important;color:#1A1640!important;',
+    'word-wrap:break-word!important;white-space:pre-wrap!important;color:var(--bb-ink)!important;',
     'animation:bb-pop .3s ease both!important;',
     'transition:transform .15s ease,box-shadow .15s ease!important;cursor:default!important;}',
     '@keyframes bb-pop{from{opacity:0;transform:translateY(8px);}}',
     '.bb-msg:hover{transform:scale(1.02) translateY(-1px)!important;}',
-    '.bb-msg-bot{align-self:flex-start!important;background:#FFFFFF!important;border-bottom-left-radius:5px!important;',
+    '.bb-msg-bot{align-self:flex-start!important;background:var(--bb-msg-bot-bg)!important;border-bottom-left-radius:5px!important;',
     'box-shadow:0 2px 8px -2px rgba(10,8,30,0.18)!important;}',
     '.bb-msg-bot:hover{box-shadow:0 6px 16px -4px rgba(10,8,30,0.28)!important;}',
-    '.bb-msg-user{align-self:flex-end!important;background:#FBD9D3!important;border-bottom-right-radius:5px!important;',
+    '.bb-msg-user{align-self:flex-end!important;background:var(--bb-msg-user-bg)!important;border-bottom-right-radius:5px!important;',
     'box-shadow:0 2px 8px -2px rgba(10,8,30,0.18)!important;}',
     '.bb-msg-user:hover{box-shadow:0 6px 16px -4px rgba(10,8,30,0.28)!important;}',
-    '.bb-msg-typing{align-self:flex-start!important;background:#FFFFFF!important;',
+    '.bb-msg-typing{align-self:flex-start!important;background:var(--bb-msg-bot-bg)!important;',
     'display:flex!important;align-items:center!important;gap:4px!important;padding:13px 14px!important;}',
     '.bb-dot-typing{width:6px!important;height:6px!important;border-radius:50%!important;',
     'background:#9B98B3!important;display:inline-block!important;',
@@ -112,30 +112,30 @@
 
     '#bunnybot-quickreplies{display:flex!important;flex-direction:column!important;',
     'align-items:flex-end!important;gap:8px!important;padding:0 18px 16px!important;}',
-    '.bb-quickreply{background:transparent!important;border:1.5px solid #3A3384!important;',
+    '.bb-quickreply{background:transparent!important;border:1.5px solid var(--bb-quickreply-border)!important;',
     'border-radius:999px!important;padding:8px 14px!important;font-size:13.5px!important;',
-    'color:#FFFFFF!important;cursor:pointer!important;text-align:left!important;',
+    'color:var(--bb-text-primary)!important;cursor:pointer!important;text-align:left!important;',
     'max-width:90%!important;outline:none!important;appearance:none!important;',
     '-webkit-appearance:none!important;font-family:inherit!important;transition:border-color .15s ease!important;}',
-    '.bb-quickreply:hover,.bb-quickreply:focus-visible{border-color:#FF8A2B!important;}',
+    '.bb-quickreply:hover,.bb-quickreply:focus-visible{border-color:var(--bb-accent)!important;}',
 
     '#bunnybot-form{display:flex!important;align-items:center!important;gap:8px!important;',
-    'padding:12px 14px!important;border-top:1px solid #3A3384!important;background:transparent!important;',
+    'padding:12px 14px!important;border-top:1px solid var(--bb-panel-border)!important;background:transparent!important;',
     'flex-shrink:0!important;width:100%!important;}',
     '#bunnybot-input{flex:1 1 auto!important;width:auto!important;min-width:0!important;',
-    'max-width:none!important;height:42px!important;border:1.5px solid #3A3384!important;',
+    'max-width:none!important;height:42px!important;border:1.5px solid var(--bb-input-border)!important;',
     'border-radius:12px!important;padding:0 14px!important;font-size:14.5px!important;',
-    'font-family:inherit!important;outline:none!important;background:#1A1640!important;',
-    'color:#FFFFFF!important;display:block!important;}',
-    '#bunnybot-input::placeholder{color:rgba(255,255,255,0.5)!important;}',
-    '#bunnybot-input:focus{border-color:#FF8A2B!important;}',
+    'font-family:inherit!important;outline:none!important;background:var(--bb-input-bg)!important;',
+    'color:var(--bb-text-primary)!important;display:block!important;}',
+    '#bunnybot-input::placeholder{color:var(--bb-text-secondary)!important;}',
+    '#bunnybot-input:focus{border-color:var(--bb-accent)!important;}',
     '#bunnybot-send{flex:0 0 auto!important;width:auto!important;height:42px!important;',
-    'background:#FF8A2B!important;border:none!important;border-radius:12px!important;',
+    'background:var(--bb-send-bg)!important;border:none!important;border-radius:12px!important;',
     'padding:0 18px!important;cursor:pointer!important;font-size:14.5px!important;font-family:inherit!important;',
-    'font-weight:700!important;color:#1A1640!important;white-space:nowrap!important;',
+    'font-weight:700!important;color:var(--bb-send-text)!important;white-space:nowrap!important;',
     'outline:none!important;appearance:none!important;-webkit-appearance:none!important;',
     'transition:background .15s ease!important;}',
-    '#bunnybot-send:hover{background:#EC730F!important;}',
+    '#bunnybot-send:hover{background:var(--bb-send-bg-hover)!important;}',
     '#bunnybot-send:disabled{opacity:.5!important;cursor:default!important;}',
     '@media (prefers-reduced-motion:reduce){#bunnybot-panel,.bb-msg{animation:none!important;}',
     '.bb-msg:hover,.bb-msg-bot:hover,.bb-msg-user:hover{transform:none!important;}}',
@@ -206,16 +206,99 @@
     '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>' +
     '</svg>';
 
+  // ---------------------------------------------------------------------
+  // Thème : toute la fenêtre (pas seulement le bouton) suit la couleur
+  // d'accent choisie par le client, pour coller à la charte de son site.
+  // ---------------------------------------------------------------------
+  var HEX_RE = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i;
+  var DEFAULT_HEX = '#1A1640';
+
+  function hexToRgb(hex) {
+    var m = HEX_RE.exec(hex || '');
+    if (!m) return null;
+    return { r: parseInt(m[1], 16), g: parseInt(m[2], 16), b: parseInt(m[3], 16) };
+  }
+
+  function toHex2(n) {
+    var s = Math.max(0, Math.min(255, Math.round(n))).toString(16);
+    return s.length < 2 ? '0' + s : s;
+  }
+
+  function rgbToHex(r, g, b) {
+    return '#' + toHex2(r) + toHex2(g) + toHex2(b);
+  }
+
+  // Mélange hex avec du noir ou du blanc (amount 0..1) pour obtenir une teinte
+  // plus sombre ou plus claire dérivée de la couleur d'accent du client.
+  function shade(hex, amount) {
+    var c = hexToRgb(hex);
+    if (!c) return hex;
+    return rgbToHex(c.r * (1 - amount), c.g * (1 - amount), c.b * (1 - amount));
+  }
+  function tint(hex, amount) {
+    var c = hexToRgb(hex);
+    if (!c) return hex;
+    return rgbToHex(c.r + (255 - c.r) * amount, c.g + (255 - c.g) * amount, c.b + (255 - c.b) * amount);
+  }
+  function luminanceOf(c) {
+    return (0.299 * c.r + 0.587 * c.g + 0.114 * c.b) / 255;
+  }
+
   function applyAccentColor(hex) {
-    root.style.setProperty('--bb-accent', hex);
-    var m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex || '');
-    var isLight = false;
-    if (m) {
-      var r = parseInt(m[1], 16), g = parseInt(m[2], 16), b = parseInt(m[3], 16);
-      var luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-      isLight = luminance > 0.68;
-    }
+    var rgb = hexToRgb(hex) || hexToRgb(DEFAULT_HEX);
+    hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+    var isLight = luminanceOf(rgb) > 0.68;
     root.classList.toggle('bb-light-accent', isLight);
+    root.style.setProperty('--bb-accent', hex);
+
+    var theme;
+    if (isLight) {
+      // Couleur d'accent claire (pastel, blanche…) : fenêtre sur fond clair,
+      // le bouton d'envoi garde la couleur d'accent exacte pour rester visible.
+      var sendBgLight = hex;
+      theme = {
+        '--bb-panel-bg': tint(hex, 0.88),
+        '--bb-panel-border': shade(hex, 0.12),
+        '--bb-text-primary': '#1A1640',
+        '--bb-text-secondary': 'rgba(26,22,64,0.6)',
+        '--bb-ink': '#1A1640',
+        '--bb-msg-bot-bg': '#FFFFFF',
+        '--bb-msg-user-bg': tint(hex, 0.65),
+        '--bb-input-bg': '#FFFFFF',
+        '--bb-input-border': shade(hex, 0.16),
+        '--bb-quickreply-border': shade(hex, 0.25),
+        '--bb-send-bg': sendBgLight,
+        '--bb-send-bg-hover': shade(hex, 0.12),
+        '--bb-send-text': '#1A1640',
+      };
+    } else {
+      // Couleur d'accent sombre ou vive (le cas le plus courant) : trois
+      // paliers dérivés de la même couleur donnent de la profondeur à la
+      // fenêtre — fond clair, champ de saisie dans la teinte exacte,
+      // bouton d'envoi légèrement assombri pour bien ressortir.
+      var sendBgDark = shade(hex, 0.14);
+      var sendTextDark = luminanceOf(hexToRgb(sendBgDark)) > 0.55 ? '#1A1640' : '#FFFFFF';
+      theme = {
+        '--bb-panel-bg': tint(hex, 0.18),
+        '--bb-panel-border': tint(hex, 0.4),
+        '--bb-text-primary': '#FFFFFF',
+        '--bb-text-secondary': 'rgba(255,255,255,0.65)',
+        '--bb-ink': '#1A1640',
+        '--bb-msg-bot-bg': '#FFFFFF',
+        '--bb-msg-user-bg': tint(hex, 0.82),
+        '--bb-input-bg': hex,
+        '--bb-input-border': tint(hex, 0.4),
+        '--bb-quickreply-border': tint(hex, 0.4),
+        '--bb-send-bg': sendBgDark,
+        '--bb-send-bg-hover': shade(hex, 0.26),
+        '--bb-send-text': sendTextDark,
+      };
+    }
+    for (var prop in theme) {
+      if (Object.prototype.hasOwnProperty.call(theme, prop)) {
+        root.style.setProperty(prop, theme[prop]);
+      }
+    }
   }
 
   var BUNNY_FACE_SRC = API_BASE + '/signup/assets/bunny-face.png';
