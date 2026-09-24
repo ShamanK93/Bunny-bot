@@ -180,7 +180,7 @@
     '    <button id="bunnybot-send" type="submit">Envoyer</button>' +
     '  </form>' +
     '</div>' +
-    '<button id="bunnybot-bubble" type="button" aria-label="Ouvrir le chat"></button>';
+    '<button id="bunnybot-bubble" type="button" aria-label="Ouvrir le chat" aria-expanded="false"></button>';
   document.body.appendChild(root);
 
   var panel = root.querySelector('#bunnybot-panel');
@@ -205,6 +205,14 @@
     '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" ' +
     'stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">' +
     '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/>' +
+    '</svg>';
+
+  // Affiché sur le bouton flottant pendant que la fenêtre est ouverte,
+  // à la place du logo — pour indiquer qu'un clic la referme.
+  var CLOSE_CHEVRON_SVG =
+    '<svg viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.5" ' +
+    'stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">' +
+    '<path d="M6 9l6 6 6-6"/>' +
     '</svg>';
 
   // ---------------------------------------------------------------------
@@ -391,6 +399,9 @@
   function openPanel() {
     state.open = true;
     panel.classList.add('bb-open');
+    bubble.innerHTML = CLOSE_CHEVRON_SVG;
+    bubble.setAttribute('aria-label', 'Fermer le chat');
+    bubble.setAttribute('aria-expanded', 'true');
     if (messagesEl.children.length === 0) {
       appendMessage('bot', state.config.welcomeMessage);
       renderQuickReplies();
@@ -401,6 +412,9 @@
   function closePanel() {
     state.open = false;
     panel.classList.remove('bb-open');
+    bubble.setAttribute('aria-label', 'Ouvrir le chat');
+    bubble.setAttribute('aria-expanded', 'false');
+    renderBubbleIcon();
   }
 
   bubble.addEventListener('click', function () {
