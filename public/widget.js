@@ -72,6 +72,7 @@
     'align-items:center!important;justify-content:center!important;}',
     '#bunnybot-header .bb-avatar img{width:100%!important;height:100%!important;display:block!important;',
     'object-fit:contain!important;transform:none!important;filter:none!important;border-radius:0!important;}',
+    '#bunnybot-header .bb-avatar svg{width:70%!important;height:70%!important;stroke:var(--bb-text-primary)!important;}',
     '#bunnybot-header .bb-id{display:flex!important;flex-direction:column!important;line-height:1.25!important;min-width:0!important;}',
     '#bunnybot-header .bb-name{font-family:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif!important;',
     'font-weight:700!important;font-size:16px!important;color:var(--bb-text-primary)!important;}',
@@ -302,7 +303,30 @@
   }
 
   var BUNNY_FACE_SRC = API_BASE + '/signup/assets/bunny-face.png';
-  avatarEl.innerHTML = '<img src="' + BUNNY_FACE_SRC + '" alt="" />';
+
+  // Si l'image de la mascotte ne charge pas (fichier pas encore déployé,
+  // mauvais domaine…), on retombe sur une icône dessinée plutôt que de
+  // laisser le navigateur afficher une image cassée à la place du logo.
+  function makeBunnyImg(className, isBubbleIcon) {
+    var img = document.createElement('img');
+    img.alt = '';
+    if (className) img.className = className;
+    img.onerror = function () {
+      console.warn(
+        '[BunnyBot] Le logo est introuvable à cette adresse : ' + BUNNY_FACE_SRC +
+        ' — vérifiez que public/signup/assets/bunny-face.png a bien été déployé sur ce domaine.'
+      );
+      img.onerror = null;
+      img.insertAdjacentHTML('afterend', MESSAGE_ICON_SVG);
+      img.remove();
+      if (isBubbleIcon) root.classList.add('bb-icon-bubble');
+    };
+    img.src = BUNNY_FACE_SRC;
+    return img;
+  }
+
+  avatarEl.innerHTML = '';
+  avatarEl.appendChild(makeBunnyImg(null, false));
 
   function renderBubbleIcon() {
     if (state.config.iconStyle === 'chat') {
@@ -317,9 +341,9 @@
       root.classList.remove('bb-icon-bubble');
     } else {
       // 'bunny' — le logo de base : la vraie mascotte en couleur, pas le tracé minimaliste.
-      var imgHtml = '<img class="bb-shaded-icon" src="' + BUNNY_FACE_SRC + '" alt="" />';
-      bubble.innerHTML = imgHtml;
       root.classList.remove('bb-icon-bubble');
+      bubble.innerHTML = '';
+      bubble.appendChild(makeBunnyImg('bb-shaded-icon', true));
     }
   }
   renderBubbleIcon();
